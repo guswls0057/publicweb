@@ -1,0 +1,140 @@
+/* src/styles/global.css */
+/* 
+  Lighthouse 100% 목표 & 디자인 시스템 (브루탈리즘, 고대비 모노크롬, 시니어 타겟) 
+*/
+
+:root {
+  /* Colors - High Contrast Monochrome */
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f4f4f4;
+  --color-text-primary: #111111; /* 고대비 */
+  --color-text-secondary: #333333;
+  --color-border: #111111;
+  
+  /* Accent Color (버튼 등 강한 강조) */
+  --color-accent: #111111;
+  --color-accent-text: #ffffff;
+  
+  /* Typography */
+  /* Figma 분석 결과에 따른 폰트 적용 (Pretendard 최우선) */
+  --font-family-base: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-base: 18px; /* 시니어 타겟: 18px 기본 */
+  --font-size-small: 14px; /* 최소 12px 규정 준수, 가독성을 위해 14px 유지 */
+  --font-size-large: 24px;
+  --font-size-h1: 32px;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Borders (Brutalist) */
+  --border-width: 2px;
+  --border-radius: 4px; /* 브루탈리즘 느낌을 위해 각진 모서리 또는 약간만 둥글게 */
+  
+  /* Accessibility */
+  --min-touch-target: 44px; /* WCAG 2.1 SC 2.5.5 준수 */
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Typography elements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-large); }
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+/* Interactive Elements (A11y focus) */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-weight: 600;
+  min-height: var(--min-touch-target); /* 터치 영역 44px 이상 보장 */
+  min-width: var(--min-touch-target);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+/* Focus styles for keyboard navigation (Lighthouse A11y) */
+:focus-visible {
+  outline: 3px solid #ff0000; /* 명확한 포커스 링 (빨간색 고대비) */
+  outline-offset: 2px;
+}
+
+/* Utility Classes */
+.touch-target {
+  min-height: var(--min-touch-target);
+  min-width: var(--min-touch-target);
+}
+
+.visually-hidden {
+  /* 스크린 리더용 숨김 텍스트 (Lighthouse A11y) */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

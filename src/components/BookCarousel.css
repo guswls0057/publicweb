@@ -1,0 +1,309 @@
+/* BookCarousel.css */
+/* 피그마 380:667 "모바일/추천도서 캐러셀" 완전 반영 */
+
+/* =============================================
+   섹션 컨테이너
+   피그마: paddingLeft 16, paddingRight 16, itemSpacing 8 (VERTICAL)
+   ============================================= */
+.bookCarouselSection {
+  max-width: 1200px;
+  margin: 0 auto 48px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* 피그마 itemSpacing 8 */
+}
+
+/* =============================================
+   섹션 제목
+   피그마: Pretendard Bold 30px, color #000
+   ============================================= */
+.bookCarouselTitle {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: var(
+    --font-family-base,
+    "Pretendard",
+    "Noto Sans KR",
+    sans-serif
+  );
+  color: #000000;
+  margin: 0;
+  line-height: 1.2;
+  padding-bottom: 4px;
+}
+
+/* =============================================
+   슬라이딩 뷰포트 (overflow hidden으로 넘침 숨김)
+   ============================================= */
+.bookCarouselViewport {
+  width: 100%;
+  overflow: hidden;
+  /* 트랙 높이 = 피그마 책표지 162px */
+  min-height: 162px;
+}
+
+/* =============================================
+   도서 목록 트랙 — 그리드 + 슬라이드 애니메이션
+   피그마: 책표지 너비 110px, 간격(x간격) = 13px
+   ============================================= */
+.bookCarouselTrack {
+  display: grid;
+  /* 모바일 기본: 3열 */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+  width: 100%;
+  /* 애니메이션: will-change로 GPU 가속 */
+  will-change: transform, opacity;
+}
+
+/* 오른쪽에서 들어오는 애니메이션 (다음 페이지) */
+.bookCarouselTrack--slide-right {
+  animation: slideFromRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* 왼쪽에서 들어오는 애니메이션 (이전 페이지) */
+.bookCarouselTrack--slide-left {
+  animation: slideFromLeft 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 태블릿 이상: 5열 */
+@media (min-width: 768px) {
+  .bookCarouselTrack {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* =============================================
+   책표지 카드
+   피그마: 110×162px, border-radius 12px
+           drop-shadow(0 2px 8px rgba(0,0,0,0.08))
+           opacity 0.7 (이미지)
+   ============================================= */
+.bookCoverCard {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  aspect-ratio: 110 / 162;
+  background-color: #e8e8e8;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.bookCoverCard:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+}
+
+.bookCoverCard:focus-visible {
+  outline: 3px solid #2859c5;
+  outline-offset: 2px;
+}
+
+/* 빈 슬롯: 레이아웃 유지용, 시각적으로는 안 보이게 */
+.bookCoverCard--empty {
+  background-color: transparent;
+  box-shadow: none;
+  pointer-events: none;
+  cursor: default;
+}
+.bookCoverCard--empty:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* =============================================
+   책표지 이미지
+   피그마: scaleMode FILL, opacity 0.7
+   ============================================= */
+.bookCoverImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85; /* 피그마 opacity 0.7 근사 */
+  transition: opacity 0.2s ease;
+}
+
+.bookCoverCard:hover .bookCoverImg {
+  opacity: 1;
+}
+
+/* =============================================
+   하단 컨트롤 바
+   피그마 "인디케이터/방향" FRAME:
+     layoutMode: HORIZONTAL
+     primaryAxisAlignItems: CENTER (가운데 정렬)
+     counterAxisAlignItems: CENTER
+     itemSpacing: 200 (인디케이터 ↔ 방향버튼 사이 넓은 간격)
+     height: 40px
+   → 실제 구현: justify-content: space-between + align-items: center
+   ============================================= */
+.carouselControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-top: 4px;
+}
+
+/* =============================================
+   인디케이터 도트 그룹
+   피그마 "인디케이터" FRAME:
+     layoutMode: HORIZONTAL
+     counterAxisAlignItems: CENTER
+     itemSpacing: 3.26 ≈ 3px
+   ============================================= */
+.carouselIndicators {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px; /* 피그마 itemSpacing 3.26 */
+}
+
+/* 도트 버튼
+   피그마 Ellipse: 16.32px 원형
+   활성(Ellipse 1): fill surface/300 = #888
+   비활성(Ellipse 2~4): fill surface/200 = #e6e6e6
+*/
+.indicatorDot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #e6e6e6; /* 비활성: surface/200 */
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+  /* 클릭 불가 표시용 */
+  pointer-events: none;
+  cursor: default;
+}
+
+.indicatorDot--active {
+  background-color: #888888; /* 활성: surface/300 */
+}
+
+
+/* =============================================
+   방향 버튼 그룹
+   피그마 "방향" FRAME:
+     layoutMode: HORIZONTAL
+     itemSpacing: 3px
+     width: 83px, height: 40px
+   ============================================= */
+.carouselNavGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px; /* 피그마 itemSpacing 3 */
+}
+
+/* 방향 버튼 개별
+   피그마: 40×40px, fills 없음(배경 투명), strokes visible:false
+   → 투명 배경, 호버 시 연한 회색 배경으로 피드백
+*/
+.carouselNavBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.carouselNavBtn:hover:not(:disabled) {
+  background-color: rgba(40, 89, 197, 0.08);
+  color: #2859c5;
+  transform: scale(1.1);
+}
+
+.carouselNavBtn:active:not(:disabled) {
+  transform: scale(0.93);
+  background-color: rgba(40, 89, 197, 0.15);
+}
+
+.carouselNavBtn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.carouselNavBtn:focus-visible {
+  outline: 2px solid #2859c5;
+  outline-offset: 2px;
+}
+
+/* =============================================
+   반응형 (태블릿/데스크탑)
+   ============================================= */
+@media (min-width: 768px) {
+  .bookCarouselSection {
+    padding: 0 24px;
+    margin-bottom: 56px;
+  }
+
+  .bookCarouselTitle {
+    font-size: 32px;
+  }
+
+  .carouselControls {
+    margin-top: 8px;
+  }
+
+  .indicatorDot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .indicatorDot--active {
+    width: 16px;
+    border-radius: 50%;
+  }
+
+  .carouselNavBtn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bookCarouselSection {
+    padding: 0 32px;
+  }
+}

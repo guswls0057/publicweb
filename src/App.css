@@ -1,0 +1,364 @@
+/* App.css */
+
+/* =========================================
+   메인 메뉴 섹션
+   가운데 정렬 + 반응형
+   ========================================= */
+.mainMenuSection {
+  width: 100%;
+  padding: var(--spacing-xl) 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가운데 정렬 */
+  gap: 24px;
+}
+
+.mainMenuGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 16px;
+  column-gap: 30px;
+  background-color: #c7e5ff;
+  border-radius: 16px;
+  padding: 24px 16px;
+  box-shadow:
+    -2px 4px 8px rgba(0, 0, 0, 0.16),
+    inset 0px 4px 4px rgba(255, 255, 255, 0.25);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ── 메뉴 아이템 ── */
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #000000;
+  border-radius: 12px;
+  padding: 8px 4px;
+  transition:
+    transform 0.2s ease,
+    background-color 0.18s ease;
+}
+
+/* 호버: 배경 투명 유지, 위로만 살짝 이동 */
+.menuItem:hover {
+  transform: translateY(-2px);
+  background-color: transparent;
+}
+
+.menuIconWrapper {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.18s ease;
+}
+
+/* 아이콘 래퍼 호버도 투명 유지 */
+.menuItem:hover .menuIconWrapper {
+  background-color: transparent;
+}
+
+.menuIconWrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+.menuText {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-family-base);
+  text-align: center;
+  line-height: 1.2;
+  white-space: pre-line;
+}
+
+/* =========================================
+   지하철 안내 영역
+   ========================================= */
+.subwayInfoContainer {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f6f6f6;
+  border-radius: 16px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.18s ease;
+}
+
+/* 호버 시 투명 배경 유지 (배경색 변경 없음) */
+.subwayInfoContainer:hover {
+  background-color: #f6f6f6;
+}
+
+.subwayInfoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+  max-width: 240px;
+}
+
+.subwayInfoTitle {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-family-base);
+  color: #000000;
+  margin: 0;
+}
+
+.subwayInfoDesc {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-family-base);
+  color: #000000;
+  line-height: 1.3;
+  margin: 0 0 12px 0;
+  word-break: keep-all;
+}
+
+.subwayInfoLink {
+  font-size: 12px;
+  font-weight: 400;
+  color: #333333;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.18s ease;
+}
+
+.subwayInfoLink:hover {
+  text-decoration: underline;
+  color: #000000;
+  background-color: transparent; /* 검정 배경 없음 */
+}
+
+.subwayInfoIcon {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+/* =========================================
+   도서 캐러셀 섹션 (레거시 스타일 유지)
+   ========================================= */
+.BooksSection {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+  overflow: hidden;
+}
+
+.booksTitle {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: var(--font-family-base);
+  color: #000000;
+  margin: 0 0 24px 0;
+}
+
+.bookCarousel {
+  display: flex;
+  gap: 13px;
+  overflow-x: auto;
+  padding-bottom: 24px;
+  padding-right: 16px;
+  margin-bottom: 32px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.bookCarousel::-webkit-scrollbar {
+  display: none;
+}
+
+.bookCover {
+  flex-shrink: 0;
+  width: 110px;
+  height: 162px;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+/* 호버 시 배경색 변화 없음 */
+.bookCover:hover {
+  transform: translateY(-4px);
+  background-color: #e0e0e0;
+}
+
+.bookCover span {
+  display: block;
+  text-align: center;
+  padding: 8px;
+  opacity: 0.7;
+}
+
+/* =========================================
+   반응형 (모바일 ≤ 767px)
+   ========================================= */
+@media (max-width: 767px) {
+  .mainMenuSection {
+    padding: var(--spacing-lg) 12px;
+    gap: 16px;
+  }
+
+  .mainMenuGrid {
+    max-width: 100%;
+    column-gap: 20px;
+    row-gap: 12px;
+    padding: 20px 12px;
+  }
+
+  .menuIconWrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .menuText {
+    font-size: 12px;
+  }
+
+  .subwayInfoContainer {
+    max-width: 100%;
+    padding: 20px 12px;
+  }
+
+  .subwayInfoDesc {
+    font-size: 16px;
+  }
+
+  .subwayInfoIcon {
+    width: 72px;
+    height: 72px;
+    margin-left: 8px;
+  }
+
+  .BooksSection {
+    padding: 0 12px;
+    margin: 24px auto;
+  }
+}
+
+/* =========================================
+   반응형 (태블릿 768px ~ 1023px)
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mainMenuSection {
+    padding: var(--spacing-xl) 24px;
+    gap: 28px;
+  }
+
+  .mainMenuGrid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 600px;
+    column-gap: 32px;
+    padding: 28px 32px;
+  }
+
+  .menuIconWrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .menuText {
+    font-size: 15px;
+    margin-top: 4px;
+  }
+
+  .subwayInfoContainer {
+    max-width: 600px;
+    padding: 28px 32px;
+  }
+
+  .subwayInfoDesc {
+    font-size: 19px;
+  }
+
+  .subwayInfoIcon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .BooksSection {
+    padding: 0 24px;
+    margin: 32px auto;
+  }
+}
+
+/* =========================================
+   반응형 (데스크탑 ≥ 1024px)
+   ========================================= */
+@media (min-width: 1024px) {
+  .mainMenuSection {
+    padding: var(--spacing-xl) 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 32px;
+  }
+
+  .mainMenuGrid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 800px;
+    column-gap: 40px;
+    padding: 32px 40px;
+  }
+
+  .menuIconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .menuText {
+    font-size: 16px;
+    margin-top: 4px;
+  }
+
+  .subwayInfoContainer {
+    max-width: 800px;
+    padding: 32px 40px;
+  }
+
+  .subwayInfoDesc {
+    font-size: 20px;
+  }
+
+  .subwayInfoIcon {
+    width: 100px;
+    height: 100px;
+    margin-left: 16px;
+  }
+
+  .BooksSection {
+    padding: 0 32px;
+    margin: 40px auto;
+  }
+}

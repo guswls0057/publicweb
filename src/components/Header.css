@@ -1,0 +1,253 @@
+/* Header.css */
+
+/* =========================================
+   헤더 전체 wrapper
+   ========================================= */
+.header {
+  width: 100%;
+}
+
+/* =========================================
+   상단 탑바 (로고 + 아이콘)
+   ========================================= */
+.topBar {
+  border-bottom: 1px solid #ededed;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.topBarContainer {
+  max-width: 1200px;
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================================
+   로고 그룹
+   ========================================= */
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.logoImagePlaceholder {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-family-base);
+  color: #000000;
+  margin: 0;
+}
+
+/* =========================================
+   우측 아이콘 그룹
+   ========================================= */
+.iconGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconBtn {
+  background-color: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #484848;
+  border-radius: 50%;
+  transition: background-color 0.18s ease;
+}
+
+/* 호버 시 투명 배경 유지 */
+.iconBtn:hover {
+  background-color: transparent;
+}
+
+/* =========================================
+   검색 영역
+   ========================================= */
+.searchContainer {
+  max-width: 1200px;
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: var(--spacing-lg) 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchInstruction {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  font-family: var(--font-family-base);
+  color: #000000;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 400px;
+  gap: 4px;
+}
+
+.searchInput {
+  flex: 1;
+  height: 44px;
+  padding: 12px 16px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #484848;
+  background-color: #ffffff;
+  border: 2px solid #2859c5;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+
+.searchInput:focus {
+  border-color: #1a3d8f;
+}
+
+.searchIconBtn {
+  width: 44px;
+  height: 44px;
+  background-color: #2859c5;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background-color 0.18s ease;
+}
+
+/* 호버 시 투명 배경 아닌 약간 어두운 파란색 (기능 버튼이므로) */
+.searchIconBtn:hover {
+  background-color: #1a3d8f;
+}
+
+/* =========================================
+   Responsive Design (Media Queries)
+   ========================================= */
+
+/* ── Mobile (max-width: 767px) ── */
+@media (max-width: 767px) {
+  .topBarContainer {
+    padding: 8px 12px;
+  }
+
+  .logoGroup {
+    gap: 10px;
+  }
+
+  .logoImagePlaceholder {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logoText {
+    font-size: 14px;
+  }
+
+  .searchContainer {
+    padding: var(--spacing-md) 12px;
+    gap: 12px;
+  }
+
+  .searchForm {
+    max-width: 100%; /* 모바일: 전체 너비 */
+  }
+
+  .searchInput {
+    font-size: 16px;
+    padding: 10px 12px;
+    height: 40px;
+  }
+
+  .searchIconBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .searchInstruction {
+    font-size: 14px;
+  }
+}
+
+/* ── Tablet (768px ~ 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .topBarContainer {
+    padding: 12px 24px;
+  }
+
+  .logoImagePlaceholder {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logoText {
+    font-size: 15px;
+  }
+
+  .searchContainer {
+    padding: var(--spacing-lg) 24px;
+  }
+
+  .searchForm {
+    max-width: 500px;
+  }
+
+  .searchInput {
+    font-size: 18px;
+  }
+}
+
+/* ── Desktop / PC (1024px 이상) ── */
+@media (min-width: 1024px) {
+  .topBarContainer {
+    padding: 16px 32px;
+  }
+
+  .logoImagePlaceholder {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logoText {
+    font-size: 16px;
+  }
+
+  .searchContainer {
+    padding: var(--spacing-xl) 32px;
+  }
+
+  .searchForm {
+    max-width: 600px;
+  }
+
+  .searchInput {
+    font-size: 20px;
+  }
+
+  .iconBtn {
+    width: 48px;
+    height: 48px;
+  }
+}
