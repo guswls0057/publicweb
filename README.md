@@ -1,16 +1,97 @@
-# React + Vite
+# ��️ [프로젝트명] 공공기관 웹 접근성 개선 및 리뉴얼 프로젝트
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> "와우 멘트 : [수원시 도서관 사업소] 웹 접근성 강화 포트폴리오"
 
-Currently, two official plugins are available:
+## 1. 프로젝트 소개
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **설명:** 정보 접근 취약계층을 포함한 모든 사용자가 제약 없이 공공 서비스를 이용할 수 있도록, 한국형 웹 콘텐츠 접근성 지침(KWCAG)을 준수하여 기획·디자인·개발을 진행한 리뉴얼 프로젝트입니다.
+- **진행 기간:** 2026.XX.XX ~ 2026.XX.XX (OO일)
+- **개발 인원:** 개인 프로젝트 (기여도 100%)
 
-## React Compiler
+## 2. 배포 및 관련 링크
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Live Demo:** [배포된 웹사이트 링크 입력](https://...)
+- **GitHub Repository:** [깃허브 링크 입력](https://...)
+- **Design (Figma):** [피그마 시안 링크 입력](https://...)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 3. 사용 기술 스택
+
+### Frontend
+
+- **React.js & Vite:** 컴포넌트 기반 개발로 복잡한 공공기관 UI의 유지보수성을 높이고, 빠른 응답 속도를 구현하기 위해 사용
+
+### Design & Tools
+
+- **Figma:** 웹 접근성 체크리스트를 기반으로 한 UI/UX 설계 및 프로토타이핑
+- **Lighthouse / Axe-core:** 웹 접근성 진단 및 품질 지표 측정을 위한 도구 활용
+
+### �� AI-Assisted Development (Vibe Coding)
+
+- **Google Gemini / Antigravity:** 시맨틱 마크업 검토, ARIA 속성 최적화, 스크린 리더 호환 로직 리팩토링을 위한 페어 프로그래밍 도구로 활용
+- **AI 활용 목표:** 복잡한 공공기관의 정보 구조를 논리적인 접근성 표준에 맞춰 빠르게 재구성하고 오류를 사전에 방지
+
+---
+
+## 4. 사용자 작업 흐름
+
+_[�� 작성 팁: 본인이 구현한 핵심 서비스(예: 민원 신청, 통합 검색 등)의 흐름을 작성하세요.]_
+
+**주요 과업: 통합 도서 검색 및 대출 예약 절차**
+
+1. 메인 페이지 접근 (스크린 리더 사용자를 위한 건너뛰기 링크 제공)
+2. 통합 검색창 이동 (논리적인 탭 순서 보장)
+3. 키워드 입력 및 검색 결과 확인 (검색 결과 수 실시간 음성 안내)
+4. 상세 정보 확인 및 예약 버튼 선택 (적절한 ARIA 레이블 적용)
+5. 예약 완료 알림 (Focus 이동을 통한 결과 인지)
+
+---
+
+## 5. AI 활용 및 개발 워크플로우 (Vibe Coding)
+
+생성형 AI를 적극적으로 활용하여 접근성 표준 준수 효율을 극대화했습니다.
+
+- **초기 구조 설계:** KWCAG 지침을 프롬프트에 반영하여, 시맨틱 태그(header, main, footer, section 등) 중심의 뼈대를 Antigravity를 통해 생성
+- **코드 리팩토링:** 비정형적인 div 위주의 코드를 AI 피드백을 통해 웹 접근성에 부합하는 시맨틱 코드로 자동 변환 및 최적화
+- **접근성 자동 검사:** 작성된 컴포넌트의 명도 대비(Color Contrast)와 대체 텍스트 적절성을 AI로 1차 검증하여 개발 시간 단축
+
+---
+
+## 6. 핵심 구현 기능
+
+- **웹 접근성 표준 준수:** 키보드 전용 사용자, 시각 장애인(스크린 리더)을 위한 시맨틱 마크업 및 초점(Focus) 관리 최적화
+- **반응형 웹 디자인(RWD):** 모바일 기기에서도 공공 서비스 이용에 불편함이 없도록 유연한 그리드 시스템 적용
+- **고대비 모드 지원:** 시력이 낮은 사용자를 위한 고대비 테마(High Contrast) 전환 기능 구현
+
+---
+
+## 7. 디렉토리 구조
+
+```text
+src
+├── assets          # 접근성 체크리스트 이미지
+├── components      # 접근성 보장 공통 컴포넌트 (SkipNav, AccessibleButton 등)
+├── pages           # Home, Search, Service 등 화면 단위 페이지
+├── App.jsx         # 라우팅 및 접근성 Provider 설정
+└── index.js        # React 앱 진입점
+```
+
+---
+
+## 8. 트러블 슈팅 (Troubleshooting)
+
+### �� 이슈 1:
+
+- **상황:**
+- **해결:**
+
+---
+
+## 9. 회고 및 인사이트
+
+**[기술보다 중요한 배려, 웹 접근성]**
+단순히 시각적으로 화려한 웹사이트를 만드는 것보다, 어떤 사용자도 소외되지 않는 '기술적 배려'가 공공 서비스의 본질이자 프론트엔드 개발자의 중요한 역량임을 깨달았습니다.
+
+**[AI와의 협업, Vibe Coding의 가능성]**
+AI 도구를 단순한 코드 자동 생성이 아닌, 표준 지침 준수 여부를 검증하는 '접근성 감리 파트너'로 활용했습니다. 이 과정에서 프롬프트를 통해 표준 가이드라인을 학습시키고 코드에 적용하는 능력이 실무 효율을 얼마나 높일 수 있는지 체감했습니다.
