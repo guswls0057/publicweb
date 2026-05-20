@@ -9,7 +9,7 @@ const recommendedBooks = Array.from({ length: 10 }, (_, i) => {
   const num = String(i + 1).padStart(2, '0');
   return {
     id: `rec-${num}`,
-    src: `/book${num}.svg`,
+    src: `${import.meta.env.BASE_URL}book${num}.svg`,
     alt: `추천도서 ${i + 1}`,
   };
 });
@@ -19,7 +19,7 @@ const popularBooks = Array.from({ length: 10 }, (_, i) => {
   const num = String(i + 11).padStart(2, '0');
   return {
     id: `pop-${num}`,
-    src: `/book${num}.svg`,
+    src: `${import.meta.env.BASE_URL}book${num}.svg`,
     alt: `인기도서 ${i + 1}`,
   };
 });

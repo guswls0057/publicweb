@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MyLibraryButton from './MyLibraryButton';
 import './Header.css'; // 반응형 CSS 임포트
+import mixboardLogo from '../assets/mixboard-image.png';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -19,21 +20,20 @@ const Header = () => {
         <div className="topBarContainer">
           {/* 로고 영역 */}
           <div className="logoGroup">
-            {/* 임시 로고 이미지 대체용 원형 */}
-            <div className="logoImagePlaceholder"></div>
+            <img src={mixboardLogo} alt="믹스보드 로고" className="logoImagePlaceholder" />
             <h1 className="logoText">수원시 통합 도서관</h1>
           </div>
           
           {/* 우측 아이콘 영역 (메뉴, 로그인) */}
           <nav aria-label="상단 유틸리티 메뉴" className="iconGroup">
             <button type="button" className="iconBtn" aria-label="로그인">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </button>
             <button type="button" className="iconBtn" aria-label="전체 메뉴 열기">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>

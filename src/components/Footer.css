@@ -27,6 +27,7 @@
 
 .footer-links a:hover {
   color: #0066cc;
+  background-color: transparent;
 }
 
 @media (max-width: 640px) {
@@ -96,6 +97,10 @@
 
 .library-select:hover {
   border-color: #0066cc;
+}
+
+.library-select:focus {
+  outline: none;
 }
 
 .go-button {
