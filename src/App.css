@@ -41,6 +41,14 @@
   transition:
     transform 0.2s ease,
     background-color 0.18s ease;
+  /* button 기본 스타일 제거 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  min-height: unset;
+  min-width: unset;
 }
 
 /* 호버: 배경 투명 유지, 위로만 살짝 이동 */
@@ -143,6 +151,17 @@
   text-decoration: underline;
   color: #000000;
   background-color: transparent; /* 검정 배경 없음 */
+}
+
+/* subwayInfoLink를 button으로 사용할 때 button 기본 스타일 제거 */
+button.subwayInfoLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  min-height: unset;
+  min-width: unset;
 }
 
 .subwayInfoIcon {

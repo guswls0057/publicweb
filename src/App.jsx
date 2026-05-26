@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BookCarousel from './components/BookCarousel';
+import SubwayLoanPage from './components/SubwayLoanPage';
 import './App.css'; // 메인메뉴 및 추가 영역 CSS 임포트
 
 // 추천도서 데이터 (book01 ~ book10, /public 폴더)
@@ -25,6 +26,7 @@ const popularBooks = Array.from({ length: 10 }, (_, i) => {
 });
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'subway-loan'
   const mainMenus = [
     {
       id: 1,
@@ -72,6 +74,13 @@ function App() {
     }
   ];
 
+  // 지하철 무인 대출 페이지 렌더
+  if (currentPage === 'subway-loan') {
+    return (
+      <SubwayLoanPage onBack={() => setCurrentPage('home')} />
+    );
+  }
+
   return (
     <>
       {/* 화면 낭독기를 위한 건너뛰기 링크 (접근성) */}
@@ -88,12 +97,20 @@ function App() {
           <h2 id="main-menu-heading" className="visually-hidden">메인 메뉴</h2>
           <div className="mainMenuGrid">
             {mainMenus.map((menu) => (
-              <a href={`#menu-${menu.id}`} key={menu.id} className="menuItem" aria-label={menu.title.replace('\n', ' ')}>
+              <button
+                key={menu.id}
+                className="menuItem"
+                aria-label={menu.title.replace('\n', ' ')}
+                id={`main-menu-item-${menu.id}`}
+                onClick={() => {
+                  if (menu.id === 4) setCurrentPage('subway-loan');
+                }}
+              >
                 <div className="menuIconWrapper" aria-hidden="true">
                   {menu.icon}
                 </div>
                 <span className="menuText">{menu.title}</span>
-              </a>
+              </button>
             ))}
           </div>
           <div className="subwayInfoContainer">
@@ -102,9 +119,14 @@ function App() {
               <p className="subwayInfoDesc">
                 출퇴근길 도서관에 들릴 필요없이 역에서 대출, 반납 할 수 있어요.
               </p>
-              <a href="#subway-detail" className="subwayInfoLink" aria-label="지하철 무인 대출 자세히 알아보기">
+              <button
+                className="subwayInfoLink"
+                aria-label="지하철 무인 대출 자세히 알아보기"
+                onClick={() => setCurrentPage('subway-loan')}
+                id="subway-info-link-btn"
+              >
                 자세히 알아보기→
-              </a>
+              </button>
             </div>
             <div className="subwayInfoIcon" aria-hidden="true">
               {/* 기차/지하철 아이콘 (Figma 디자인 반영) */}
