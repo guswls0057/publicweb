@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import './Header.css'; // 반응형 CSS 임포트
 import mixboardLogo from '../assets/mixboard-image.png';
 
-const Header = () => {
+const Header = ({ onSearch, onLogoClick }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim() === '') return;
-    alert(`'${searchQuery}' 도서 예약 대출을 검색합니다.`);
+    if (onSearch) {
+      onSearch(searchQuery);
+    } else {
+      alert(`'${searchQuery}' 도서 예약 대출을 검색합니다.`);
+    }
   };
 
   return (
@@ -17,7 +21,19 @@ const Header = () => {
       <div className="topBar">
         <div className="topBarContainer">
           {/* 로고 영역 */}
-          <div className="logoGroup">
+          <div 
+            className="logoGroup" 
+            onClick={onLogoClick}
+            style={{ cursor: 'pointer' }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (onLogoClick && (e.key === 'Enter' || e.key === ' ')) {
+                onLogoClick();
+              }
+            }}
+            aria-label="수원시 통합 도서관 메인페이지로 이동"
+          >
             <img src={mixboardLogo} alt="믹스보드 로고" className="logoImagePlaceholder" />
             <h1 className="logoText">수원시 통합 도서관</h1>
           </div>

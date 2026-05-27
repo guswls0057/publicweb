@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import BookCarousel from './components/BookCarousel';
 import SubwayLoanPage from './components/SubwayLoanPage';
+import SearchResultPage from './components/SearchResultPage';
 import './App.css'; // 메인메뉴 및 추가 영역 CSS 임포트
 
 // 추천도서 데이터 (book01 ~ book10, /public 폴더)
@@ -26,7 +27,8 @@ const popularBooks = Array.from({ length: 10 }, (_, i) => {
 });
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'subway-loan'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'subway-loan' | 'search-result'
+  const [searchQuery, setSearchQuery] = useState('');
   const mainMenus = [
     {
       id: 1,
@@ -74,12 +76,6 @@ function App() {
     }
   ];
 
-  // 지하철 무인 대출 페이지 렌더
-  if (currentPage === 'subway-loan') {
-    return (
-      <SubwayLoanPage onBack={() => setCurrentPage('home')} />
-    );
-  }
 
   return (
     <>
@@ -88,72 +84,93 @@ function App() {
         본문 바로가기
       </a>
       
-      <Header />
+      <Header 
+        onSearch={(q) => {
+          setSearchQuery(q);
+          const normalized = q.trim().replace(/\s/g, '');
+          if (normalized === '노인과바다') {
+            setCurrentPage('search-result');
+          } else {
+            alert(`'${q}'에 대한 검색 결과는 지원하지 않습니다. '노인과 바다'를 검색해 보세요!`);
+          }
+        }}
+        onLogoClick={() => {
+          setCurrentPage('home');
+          setSearchQuery('');
+        }}
+      />
       
       <main id="main-content">
-        
-        {/* Figma 380:651 노드 반영: 메인메뉴 (아이콘 모음) */}
-        <section aria-labelledby="main-menu-heading" className="mainMenuSection">
-          <h2 id="main-menu-heading" className="visually-hidden">메인 메뉴</h2>
-          <div className="mainMenuGrid">
-            {mainMenus.map((menu) => (
-              <button
-                key={menu.id}
-                className="menuItem"
-                aria-label={menu.title.replace('\n', ' ')}
-                id={`main-menu-item-${menu.id}`}
-                onClick={() => {
-                  if (menu.id === 4) setCurrentPage('subway-loan');
-                }}
-              >
-                <div className="menuIconWrapper" aria-hidden="true">
-                  {menu.icon}
+        {currentPage === 'home' ? (
+          <>
+            {/* Figma 380:651 노드 반영: 메인메뉴 (아이콘 모음) */}
+            <section aria-labelledby="main-menu-heading" className="mainMenuSection">
+              <h2 id="main-menu-heading" className="visually-hidden">메인 메뉴</h2>
+              <div className="mainMenuGrid">
+                {mainMenus.map((menu) => (
+                  <button
+                    key={menu.id}
+                    className="menuItem"
+                    aria-label={menu.title.replace('\n', ' ')}
+                    id={`main-menu-item-${menu.id}`}
+                    onClick={() => {
+                      if (menu.id === 4) setCurrentPage('subway-loan');
+                    }}
+                  >
+                    <div className="menuIconWrapper" aria-hidden="true">
+                      {menu.icon}
+                    </div>
+                    <span className="menuText">{menu.title}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="subwayInfoContainer">
+                <div className="subwayInfoContent">
+                  <h3 id="subway-info-heading" className="subwayInfoTitle">지하철 무인 대출이 무엇인가요?</h3>
+                  <p className="subwayInfoDesc">
+                    출퇴근길 도서관에 들릴 필요없이 역에서 대출, 반납 할 수 있어요.
+                  </p>
+                  <button
+                    className="subwayInfoLink"
+                    aria-label="지하철 무인 대출 자세히 알아보기"
+                    onClick={() => setCurrentPage('subway-loan')}
+                    id="subway-info-link-btn"
+                  >
+                    자세히 알아보기→
+                  </button>
                 </div>
-                <span className="menuText">{menu.title}</span>
-              </button>
-            ))}
-          </div>
-          <div className="subwayInfoContainer">
-            <div className="subwayInfoContent">
-              <h3 id="subway-info-heading" className="subwayInfoTitle">지하철 무인 대출이 무엇인가요?</h3>
-              <p className="subwayInfoDesc">
-                출퇴근길 도서관에 들릴 필요없이 역에서 대출, 반납 할 수 있어요.
-              </p>
-              <button
-                className="subwayInfoLink"
-                aria-label="지하철 무인 대출 자세히 알아보기"
-                onClick={() => setCurrentPage('subway-loan')}
-                id="subway-info-link-btn"
-              >
-                자세히 알아보기→
-              </button>
-            </div>
-            <div className="subwayInfoIcon" aria-hidden="true">
-              {/* 기차/지하철 아이콘 (Figma 디자인 반영) */}
-              <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
-                <path d="M4 11h16"></path>
-                <path d="M12 3v8"></path>
-                <path d="M8 19l-2 3"></path>
-                <path d="M16 19l2 3"></path>
-                <path d="M8 15h.01"></path>
-                <path d="M16 15h.01"></path>
-              </svg>
-            </div>
-          </div>
-        </section>
+                <div className="subwayInfoIcon" aria-hidden="true">
+                  {/* 기차/지하철 아이콘 (Figma 디자인 반영) */}
+                  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
+                    <path d="M4 11h16"></path>
+                    <path d="M12 3v8"></path>
+                    <path d="M8 19l-2 3"></path>
+                    <path d="M16 19l2 3"></path>
+                    <path d="M8 15h.01"></path>
+                    <path d="M16 15h.01"></path>
+                  </svg>
+                </div>
+              </div>
+            </section>
 
-        {/* Figma 380:667 (추천도서), 인기도서 캐러셀 - BookCarousel 컴포넌트 */}
-        <BookCarousel
-          title="추천도서"
-          books={recommendedBooks}
-          carouselId="recommended"
-        />
-        <BookCarousel
-          title="인기도서"
-          books={popularBooks}
-          carouselId="popular"
-        />
+            {/* Figma 380:667 (추천도서), 인기도서 캐러셀 - BookCarousel 컴포넌트 */}
+            <BookCarousel
+              title="추천도서"
+              books={recommendedBooks}
+              carouselId="recommended"
+            />
+            <BookCarousel
+              title="인기도서"
+              books={popularBooks}
+              carouselId="popular"
+            />
+          </>
+        ) : currentPage === 'subway-loan' ? (
+          <SubwayLoanPage onBack={() => setCurrentPage('home')} />
+        ) : (
+          <SearchResultPage searchQuery={searchQuery} />
+        )}
       </main>
       <Footer />
     </>

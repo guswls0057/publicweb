@@ -1,0 +1,477 @@
+/* ══════════════════════════════════════════════════════════
+   도서 검색 결과 페이지 전용 CSS 스타일 시트
+   피그마 시안(node-id: 380-839) 매칭 및 반응형 레이아웃 설계
+   ══════════════════════════════════════════════════════════ */
+
+/* ── 1. 전체 레이아웃 컨테이너 ── */
+.search-result-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 16px 60px;
+  box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  animation: srpFadeIn 0.35s ease-out;
+}
+
+@keyframes srpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── 2. 도서 카드 목록 ── */
+.search-result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 10px; /* 피그마 갭 표현에 부합하는 상단 여백 */
+}
+
+/* 개별 도서 카드 */
+.book-card-item {
+  border: 1px solid #e5e8eb;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.book-card-item:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #2859c5;
+}
+
+/* ── 3. 도서 기본 정보 레이아웃 ── */
+.book-card-main {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+/* 도서 표지 이미지 */
+.book-cover-wrapper {
+  width: 100px;
+  height: 140px;
+  flex-shrink: 0;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.book-cover-img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.book-card-item:hover .book-cover-img {
+  transform: scale(1.05);
+}
+
+/* 도서 서지 정보 */
+.book-meta-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.book-meta-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.meta-row {
+  display: flex;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.meta-row dt {
+  width: 65px;
+  font-weight: 700;
+  color: #868e96;
+  flex-shrink: 0;
+}
+
+.meta-row dd {
+  margin: 0;
+  color: #495057;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+/* ── 4. 대출 가능 태그 박스 ── */
+.book-loan-status-box {
+  background-color: #f8f9fc;
+  border: 1px solid #edf2f7;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+
+.loan-status-tag {
+  font-size: 13px;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+
+.loan-status-tag.active {
+  color: #2859c5;
+}
+
+.loan-status-desc {
+  font-size: 12px;
+  color: #495057;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.loan-status-desc strong {
+  color: #d9534f;
+  font-weight: 700;
+}
+
+/* ── 5. 소장정보 아코디언 토글 버튼 ── */
+.holdings-toggle-btn {
+  width: 100%;
+  border: none;
+  background-color: #495057;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.holdings-toggle-btn:hover {
+  background-color: #343a40;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.holdings-toggle-btn.is-open {
+  background-color: #212529;
+}
+
+/* ── 6. 소장 정보 상세 패널 (아코디언) ── */
+.holdings-detail-panel {
+  margin-top: 18px;
+  border-top: 1px dashed #e9ecef;
+  padding-top: 16px;
+  animation: srpSlideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes srpSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.holdings-panel-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 수령도서관 헤더 */
+.holdings-header-bar {
+  font-size: 14px;
+  font-weight: 800;
+  color: #212529;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 6px;
+  width: fit-content;
+}
+
+.highlight-red {
+  color: #d9534f;
+  font-weight: 800;
+  margin-left: 2px;
+}
+
+/* 소장처 카드 목록 */
+.holdings-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 소장처 개별 카드 */
+.holding-library-card {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+}
+
+.holding-library-card:hover {
+  border-color: #ced4da;
+}
+
+.holding-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.holding-library-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #212529;
+}
+
+.holding-status-badge {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.holding-status-badge.available {
+  color: #2859c5;
+}
+
+.holding-status-badge.unavailable {
+  color: #868e96;
+}
+
+.holding-card-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #495057;
+  margin-bottom: 12px;
+}
+
+.holding-location {
+  margin: 0 0 3px 0;
+  font-weight: 500;
+}
+
+.holding-call-no {
+  margin: 0;
+  font-weight: 700;
+  color: #111111;
+}
+
+.holding-card-action {
+  width: 100%;
+}
+
+/* 지하철 무인대출 예약 버튼 */
+.subway-reserve-btn {
+  width: 100%;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.subway-reserve-btn.active {
+  background-color: #002f9c; /* 피그마 다크 블루 */
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 47, 156, 0.15);
+}
+
+.subway-reserve-btn.active:hover {
+  background-color: #002375;
+  box-shadow: 0 4px 8px rgba(0, 47, 156, 0.25);
+}
+
+.subway-reserve-btn.disabled {
+  background-color: #f1f3f5;
+  color: #adb5bd;
+  cursor: not-allowed;
+  border: 1px solid #dee2e6;
+}
+
+/* ── 7. 페이지네이션 ── */
+.search-result-pagination {
+  display: flex;
+  justify-content: center;
+  margin: 48px 0 24px; /* 피그마 갭 표현에 상응하는 시원한 상하 여백 */
+}
+
+.pagination-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 4px;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.pagination-list button {
+  border: 1px solid #dee2e6;
+  background-color: #ffffff;
+  color: #495057;
+  font-size: 13px;
+  font-weight: 600;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.pagination-list button:hover {
+  border-color: #2859c5;
+  color: #2859c5;
+  background-color: #f8f9fc;
+}
+
+.page-number-item.active button {
+  background-color: #2859c5;
+  color: #ffffff;
+  border-color: #2859c5;
+  box-shadow: 0 2px 6px rgba(40, 89, 197, 0.2);
+}
+
+.page-nav-arrow button {
+  background-color: #f8f9fa;
+  font-size: 11px;
+}
+
+/* ── 8. 반응형 미디어 쿼리 ── */
+
+/* ━━ 태블릿 버전 (768px ~ 1023px) ━━ */
+@media (min-width: 768px) {
+  .search-result-container {
+    padding: 40px 24px 80px;
+  }
+
+  .book-card-item {
+    padding: 24px;
+  }
+
+  .book-title {
+    font-size: 18px;
+  }
+
+  .meta-row {
+    font-size: 14px;
+  }
+
+  .meta-row dt {
+    width: 75px;
+  }
+
+  .loan-status-tag {
+    font-size: 14px;
+  }
+
+  .loan-status-desc {
+    font-size: 13px;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  /* 소장처 카드 2열 그리드 배치 */
+  .holdings-cards-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .holding-library-card {
+    height: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ━━ 데스크탑 버전 (1024px 이상) ━━ */
+@media (min-width: 1024px) {
+  .search-result-container {
+    padding: 50px 40px 100px;
+  }
+
+  .book-card-item {
+    padding: 30px;
+  }
+
+  .book-cover-wrapper {
+    width: 110px;
+    height: 155px;
+  }
+
+  .book-title {
+    font-size: 20px;
+  }
+
+  .meta-row {
+    font-size: 14.5px;
+  }
+
+  .meta-row dt {
+    width: 80px;
+  }
+
+  .loan-status-tag {
+    font-size: 14.5px;
+  }
+
+  .loan-status-desc {
+    font-size: 13.5px;
+  }
+
+  .holdings-cards-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}

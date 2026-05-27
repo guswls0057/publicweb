@@ -1,612 +1,333 @@
 /* ══════════════════════════════════════════════════════════
-   SubwayLoanPage.css
-   피그마: 239-437 (전체), 188-3048 (도서검색폼)
-   주조색: #2859c5  /  반응형: 모바일 / 태블릿 / 데스크탑
+   지하철 무인 대출 상세 페이지 전용 CSS 스타일 시트
+   피그마 시안(figma_design.png)과 100% 동일한 반응형 레이아웃 구현
    ══════════════════════════════════════════════════════════ */
 
-/* ── CSS 변수 ── */
-:root {
-  --slp-primary:     #2859c5;
-  --slp-primary-dk:  #1a3d8f;
-  --slp-primary-lt:  #e8eef9;
-  --slp-primary-bg:  #c7e5ff;   /* 메인 mainMenuGrid 배경색 */
-  --slp-surface:     #ffffff;
-  --slp-bg:          #f5f5f5;
-  --slp-border:      #e5e5e5;
-  --slp-text:        #000000;
-  --slp-text-sub:    #555555;
-  --slp-nav-h:       74px;      /* 피그마 상단바 height 74 */
-  --slp-pad-x:       16px;      /* 피그마 paddingLeft/Right 16 */
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   기본 (모바일 우선, max-width 없음)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.slpPage {
-  min-height: 100vh;
-  background-color: var(--slp-bg);
-  display: flex;
-  flex-direction: column;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+/* ── 1. 전체 레이아웃 컨테이너 ── */
+.subway-loan-container {
   width: 100%;
-  animation: slpSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-  overflow-x: hidden;
-}
-
-@keyframes slpSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-/* ━━━━━━━━━━━━━━
-   네비 바
-━━━━━━━━━━━━━━━ */
-.slpNav {
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--slp-nav-h);
-  padding: 12px var(--slp-pad-x);
-  background-color: var(--slp-surface);
-  border-bottom: 1px solid #ededed;
-}
-
-.slpNavBack {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  border-radius: 12px;
-  color: #484848;
-  cursor: pointer;
-  transition: background-color 0.15s;
-  padding: 0;
-  flex-shrink: 0;
-}
-.slpNavBack:hover { background-color: #f0f0f0; }
-
-.slpNavTitle {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--slp-text);
-  letter-spacing: 0;
-}
-
-.slpNavGap { width: 44px; }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   도서 검색 섹션 (피그마 188-3048 도서검색폼)
-   - 배경: 메인 헤더 파란색 배경(#2859c5)과 동일 계열
-   - 내부 패딩: paddingLeft/Right 16px (피그마 동일)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.slpSearchSection {
-  background-color: var(--slp-primary);
-  padding: 24px var(--slp-pad-x) 28px;
-}
-
-.slpSearchInner {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;    /* 피그마 itemSpacing: 16 */
-  width: 100%;
-}
-
-/* 안내 문구: 피그마 "찾으시는 책을 검색하세요." Bold 16px, 흰색 */
-.slpSearchLabel {
-  font-size: 16px;        /* 피그마 fontSize: 16 */
-  font-weight: 700;       /* Pretendard-Bold */
-  color: #ffffff;
-  margin: 0;
-  line-height: 1.2;
-  letter-spacing: 0;
-}
-
-/* 검색 폼 컨테이너: 피그마 도서검색 폼 HORIZONTAL 레이아웃, itemSpacing: 4 */
-.slpSearchForm {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;               /* 피그마 itemSpacing: 4 */
-  width: 100%;
-}
-
-/* 입력 필드: 피그마 "도서 검색 폼" → 흰색 배경, #2859c5 border 2px,
-   radius 8px, paddingLeft/Right 16, height 44 */
-.slpSearchInput {
-  flex: 1;
-  height: 44px;           /* 피그마 height: 44 */
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 16px 60px;
+  box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333333;
   background-color: #ffffff;
-  border: 2px solid var(--slp-primary);   /* 피그마 stroke #2859c5, strokeWeight 2 */
-  border-radius: 8px;     /* 피그마 cornerRadius: 8 */
-  padding: 0 16px;        /* 피그마 paddingLeft/Right: 16 */
-  font-size: 16px;        /* 피그마 fontSize: 20 → 모바일 가독성 최적화 */
-  font-weight: 500;       /* Pretendard-Medium */
-  color: #484848;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  /* iOS 기본 스타일 제거 */
-  -webkit-appearance: none;
-  appearance: none;
-}
-.slpSearchInput::placeholder {
-  color: #aaa;
-  font-weight: 400;
-}
-.slpSearchInput:focus {
-  border-color: var(--slp-primary-dk);
-  box-shadow: 0 0 0 3px rgba(40, 89, 197, 0.2);
-}
-/* search type X 버튼 숨김 */
-.slpSearchInput::-webkit-search-cancel-button { display: none; }
-
-/* 검색 버튼: 피그마 검색버튼 → #2859c5 배경, radius 8, 44×44 */
-.slpSearchBtn {
-  width: 44px;            /* 피그마 width: 44 */
-  height: 44px;           /* 피그마 height: 44 */
-  flex-shrink: 0;
-  background-color: var(--slp-primary);
-  border: none;
-  border-radius: 8px;     /* 피그마 cornerRadius: 8 */
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.15s;
-  padding: 0;
-}
-.slpSearchBtn:hover  { background-color: var(--slp-primary-dk); }
-.slpSearchBtn:active { transform: scale(0.95); }
-
-/* 서비스 소개 태그 */
-.slpSearchSub {
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(255,255,255, 0.8);
-  margin: 0;
-  line-height: 1.5;
-}
-.slpSearchSub strong {
-  color: #ffffff;
-  font-weight: 700;
+  animation: slpFadeIn 0.35s ease-out;
 }
 
-/* ━━━━━━━━━━━━━
-   섹션 공통
-━━━━━━━━━━━━━━ */
-.slpSection {
-  background-color: var(--slp-surface);
-  margin-top: 8px;
-}
-.slpSectionAlt {
-  background-color: var(--slp-bg);
-}
-.slpSectionInner {
-  padding: 24px var(--slp-pad-x);
+@keyframes slpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.slpSectionTitle {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--slp-text);
-  margin: 0 0 4px 0;
-  letter-spacing: -0.2px;
-  border-left: 4px solid var(--slp-primary);
-  padding-left: 10px;
-  line-height: 1.2;
-}
-.slpSectionSub {
-  font-size: 12px;
-  color: #888;
-  margin: 4px 0 16px 14px;
-  font-weight: 400;
-}
-
-/* ━━━━━━━━━━━━━━
-   이용 방법 스텝
-━━━━━━━━━━━━━━━ */
-.slpStepList {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.slpStepItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 20px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-.slpStepItem:last-child { border-bottom: none; }
-
-.slpStepBadge {
-  width: 32px;
-  height: 32px;
-  background-color: var(--slp-primary);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 800;
-  flex-shrink: 0;
-  letter-spacing: -0.5px;
-}
-.slpStepIcon {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-}
-.slpStepBody {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-top: 4px;
-}
-.slpStepTitle {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--slp-text);
-  line-height: 1.3;
-}
-.slpStepDesc {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--slp-text-sub);
-  line-height: 1.6;
-  margin: 0;
-  word-break: keep-all;
-}
-
-/* ━━━━━━━━━━━━━━
-   역 목록
-━━━━━━━━━━━━━━━ */
-.slpStationList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.slpStationCard {
-  width: 100%;
-  background-color: var(--slp-surface);
-  border: 1.5px solid var(--slp-border);
-  border-radius: 16px;
-  padding: 16px;
-  cursor: pointer;
-  text-align: left;
-  transition: border-color 0.18s, box-shadow 0.18s;
-  font-family: inherit;
-  color: inherit;
-}
-.slpStationCard:hover,
-.slpStationCard.is-open {
-  border-color: var(--slp-primary);
-  box-shadow: -2px 4px 8px rgba(0,0,0,0.08);
-}
-.slpStationCard.is-closed { opacity: 0.55; }
-
-.slpCardTop {
+/* ── 2. 헤더 및 뒤로가기 버튼 영역 ── */
+.subway-loan-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  margin-bottom: 12px;
 }
-.slpCardLeft {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.slpLineBadge {
+
+/* 뒤로가기 버튼 마이크로 인터랙션 및 스타일 */
+.subway-loan-back-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  letter-spacing: -0.3px;
-  font-family: inherit;
+  gap: 6px;
+  border: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-.slpCardName {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--slp-text);
-  letter-spacing: -0.2px;
+
+.subway-loan-back-btn:hover {
+  color: #2859c5;
+  border-color: #2859c5;
+  background-color: #f7f9fc;
+  box-shadow: 0 4px 8px rgba(40, 89, 197, 0.1);
 }
-.slpCardRight {
+
+.subway-loan-back-btn:hover .back-btn-icon {
+  transform: translateX(-3px);
+}
+
+.back-btn-icon {
+  transition: transform 0.2s ease;
+}
+
+/* 지하철 무인 대출 타이틀 */
+.subway-loan-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* ── 3. 구분선 ── */
+.subway-loan-divider {
+  width: 100%;
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: 24px;
+}
+
+/* ── 4. 서비스 소개 회색 박스 ── */
+.subway-loan-intro {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #222222;
+  font-weight: 500;
+  margin-bottom: 32px;
+  word-break: keep-all;
+  border-left: 4px solid #cccccc;
+}
+
+/* ── 5. 콘텐츠 섹션 공통 ── */
+.subway-loan-section {
+  margin-bottom: 36px;
+}
+
+/* 피그마의 블루 서클 불릿(속 빈 파란 동그라미) 재현 */
+.subway-loan-sec-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0 0 16px 0;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.slpStatusTag {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 6px;
-  white-space: nowrap;
-  font-family: inherit;
-}
-.slpStatusTag.on { background-color: var(--slp-primary-lt); color: var(--slp-primary); }
-.slpStatusTag.off { background-color: #fff3e0; color: #e65100; }
 
-.slpChevron {
-  color: #aaa;
-  transition: transform 0.22s ease;
+.subway-loan-sec-title::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: 3px solid #2859c5; /* 굵은 파란색 링 */
+  border-radius: 50%;
+  background-color: transparent;
   flex-shrink: 0;
 }
-.slpStationCard.is-open .slpChevron {
-  transform: rotate(180deg);
-  color: var(--slp-primary);
-}
 
-.slpCardDetail {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid #ebebeb;
-  animation: detailIn 0.2s ease-out;
-}
-@keyframes detailIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.slpDetailList {
+/* 리스트 스타일 커스터마이징 */
+.subway-loan-sec-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin: 0;
 }
-.slpDetailItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 13px;
-  color: #444;
-  line-height: 1.5;
-}
-.slpDetailItem svg { flex-shrink: 0; margin-top: 1px; }
-.slpDetailItem strong { color: var(--slp-text); font-weight: 700; }
 
-.slpReserveBtn {
-  width: 100%;
-  height: 44px;
-  background-color: var(--slp-primary);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.15s;
-  font-family: inherit;
-  letter-spacing: -0.2px;
-}
-.slpReserveBtn:hover  { background-color: var(--slp-primary-dk); }
-.slpReserveBtn:active { transform: scale(0.98); }
-
-/* ━━━━━━━━━━━━━━
-   이용 안내
-━━━━━━━━━━━━━━━ */
-.slpNoticeList {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.slpNoticeItem {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
-  align-items: flex-start;
-}
-.slpNoticeItem:last-child { border-bottom: none; }
-
-.slpNoticeLabel {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--slp-primary);
-  white-space: nowrap;
-  flex-shrink: 0;
-  min-width: 60px;
-}
-.slpNoticeText {
-  font-size: 13px;
-  color: #444;
+.subway-loan-sec-list li {
+  font-size: 15px;
   line-height: 1.6;
+  color: #333333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
   word-break: keep-all;
 }
 
-/* 하단 여백 */
-.slpBottom {
-  height: 40px;
-  background-color: var(--slp-bg);
+.subway-loan-sec-list li:last-child {
+  margin-bottom: 0;
 }
 
-/* ════════════════════════════════════════════════════
-   반응형 — 태블릿 (768px ~ 1023px)
-════════════════════════════════════════════════════ */
+/* 붉은색 삼각형 불릿 */
+.bullet-red-arrow {
+  color: #e05a47;
+  font-size: 12px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* 붉은색 안내 텍스트 */
+.text-red {
+  color: #d9534f;
+  font-weight: 600;
+}
+
+.text-red-bold {
+  color: #d9534f;
+  font-weight: 700;
+}
+
+.no-bullet {
+  padding-left: 18px;
+  display: block !important;
+}
+
+/* ── 6. 운영장소 및 제공서비스 테이블 ── */
+.subway-loan-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  -webkit-overflow-scrolling: touch;
+}
+
+.subway-loan-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+}
+
+.subway-loan-table th,
+.subway-loan-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
+  font-size: 14px;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.subway-loan-table th:last-child,
+.subway-loan-table td:last-child {
+  border-right: none;
+}
+
+.subway-loan-table tr:last-child th,
+.subway-loan-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 테이블 컬럼 비율 지정 */
+.subway-loan-table th[scope="col"]:nth-child(1) {
+  width: 100px;
+}
+.subway-loan-table th[scope="col"]:nth-child(2) {
+  width: auto;
+}
+.subway-loan-table th[scope="col"]:nth-child(3) {
+  width: 220px;
+}
+
+/* 헤더 셀 디자인 */
+.subway-loan-table th[scope="col"] {
+  background-color: #f7f9fc;
+  font-weight: 800;
+  color: #333333;
+  text-align: center;
+}
+
+/* 구분 셀 디자인 */
+.subway-loan-table th[scope="row"] {
+  background-color: #fafbfc;
+  font-weight: 700;
+  color: #333333;
+  text-align: center;
+}
+
+/* 설치 위치 셀 디자인 */
+.subway-loan-table td {
+  color: #495057;
+  font-weight: 500;
+}
+
+/* 병합된 제공서비스 셀 */
+.merged-service-cell {
+  text-align: center;
+  font-weight: 700;
+  color: #2859c5;
+  background-color: #ffffff;
+  border-left: 1px solid #e1e1e1;
+  letter-spacing: -0.2px;
+  word-break: keep-all;
+  line-height: 1.6;
+}
+
+/* ── 7. 반응형 미디어 쿼리 ── */
+
+/* ━━ 태블릿 버전 (768px ~ 1023px) ━━ */
 @media (min-width: 768px) {
-  :root {
-    --slp-pad-x: 32px;   /* 태블릿: 좌우 여백 확대 */
+  .subway-loan-container {
+    padding: 40px 24px 80px;
   }
 
-  /* 페이지 최대 너비 설정 없음 → 너비 100% 유지, 내부 패딩으로 여백 */
+  .subway-loan-title {
+    font-size: 26px;
+  }
 
-  /* 네비 높이 약간 증가 */
-  .slpNav { height: 80px; }
+  .subway-loan-intro {
+    padding: 22px 26px;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
 
-  /* 검색 섹션 패딩 확대 */
-  .slpSearchSection {
-    padding: 32px var(--slp-pad-x) 36px;
+  .subway-loan-sec-title {
+    font-size: 20px;
   }
-  .slpSearchInner {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-  .slpSearchLabel { font-size: 18px; }
-  .slpSearchInput {
-    height: 52px;
-    font-size: 18px;
-  }
-  .slpSearchBtn {
-    width: 52px;
-    height: 52px;
-  }
-  .slpSearchSub { font-size: 13px; }
 
-  /* 섹션 내부 최대 너비 */
-  .slpSectionInner {
-    padding: 32px var(--slp-pad-x);
-    max-width: 680px;
-    margin-left: auto;
-    margin-right: auto;
+  .subway-loan-sec-list li {
+    font-size: 16px;
+    margin-bottom: 12px;
   }
-  .slpSectionTitle { font-size: 20px; }
 
-  /* 스텝: 아이콘 크게 */
-  .slpStepIcon { width: 72px; height: 72px; }
-  .slpStepBadge { width: 36px; height: 36px; font-size: 14px; }
-  .slpStepTitle { font-size: 16px; }
-  .slpStepDesc  { font-size: 14px; }
-
-  /* 역 카드 그리드: 2열 */
-  .slpStationList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+  .subway-loan-table th,
+  .subway-loan-table td {
+    padding: 16px 20px;
+    font-size: 15px;
   }
-  .slpCardName { font-size: 15px; }
+  
+  .subway-loan-table th[scope="col"]:nth-child(1) {
+    width: 140px;
+  }
+  .subway-loan-table th[scope="col"]:nth-child(3) {
+    width: 280px;
+  }
 }
 
-/* ════════════════════════════════════════════════════
-   반응형 — 데스크탑 (1024px ~)
-════════════════════════════════════════════════════ */
+/* ━━ 데스크탑 버전 (1024px 이상) ━━ */
 @media (min-width: 1024px) {
-  :root {
-    --slp-pad-x: 48px;
+  .subway-loan-container {
+    padding: 50px 40px 100px;
   }
 
-  /* 전체 페이지 최대 너비 제한 */
-  .slpPage {
-    max-width: 1280px;
-    margin: 0 auto;
-    box-shadow: 0 0 0 1px #e5e5e5;
+  .subway-loan-title {
+    font-size: 28px;
   }
 
-  /* 네비 */
-  .slpNav { height: 88px; padding: 0 var(--slp-pad-x); }
-  .slpNavTitle { font-size: 18px; }
-
-  /* 검색 섹션: 좌우 패딩 크게, 내부 컨테이너 최대 너비 */
-  .slpSearchSection {
-    padding: 48px var(--slp-pad-x) 52px;
-  }
-  .slpSearchInner {
-    max-width: 800px;
-    gap: 20px;
-  }
-  .slpSearchLabel { font-size: 20px; }
-  .slpSearchInput {
-    height: 56px;
-    font-size: 18px;
+  .subway-loan-intro {
+    padding: 24px 30px;
+    font-size: 17px;
     border-radius: 10px;
   }
-  .slpSearchBtn {
-    width: 56px;
-    height: 56px;
-    border-radius: 10px;
-  }
-  .slpSearchSub { font-size: 14px; }
 
-  /* 섹션 최대 너비 */
-  .slpSectionInner {
-    padding: 40px var(--slp-pad-x);
-    max-width: 900px;
+  .subway-loan-sec-title {
+    font-size: 22px;
   }
-  .slpSectionTitle { font-size: 22px; }
 
-  /* 스텝 목록: 2열 그리드 */
-  .slpStepList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 32px;
+  .subway-loan-sec-list li {
+    font-size: 16px;
+    margin-bottom: 14px;
   }
-  .slpStepItem {
-    padding: 24px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  /* 홀수 스텝은 오른쪽 열 border 처리 */
-  .slpStepItem:nth-child(odd) {
-    border-right: 1px solid #f0f0f0;
-    padding-right: 32px;
-  }
-  .slpStepItem:nth-child(even) {
-    padding-left: 0;
-  }
-  /* 마지막 2개는 하단 border 제거 */
-  .slpStepItem:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
-  .slpStepIcon { width: 80px; height: 80px; }
-  .slpStepBadge { width: 38px; height: 38px; font-size: 15px; }
-  .slpStepTitle { font-size: 17px; }
-  .slpStepDesc  { font-size: 14px; }
 
-  /* 역 카드: 3열 */
-  .slpStationList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+  .subway-loan-table th,
+  .subway-loan-table td {
+    padding: 18px 24px;
   }
-  .slpCardName { font-size: 15px; }
 
-  /* 이용 안내: 2열 */
-  .slpNoticeList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+  .subway-loan-table th[scope="col"]:nth-child(1) {
+    width: 160px;
   }
-  .slpNoticeItem:nth-child(odd) {
-    border-right: 1px solid #f0f0f0;
-    padding-right: 24px;
+  .subway-loan-table th[scope="col"]:nth-child(3) {
+    width: 320px;
   }
-  .slpNoticeItem:nth-child(even) {
-    padding-left: 24px;
-  }
-  .slpNoticeLabel { font-size: 14px; min-width: 72px; }
-  .slpNoticeText  { font-size: 14px; }
-}
-
-/* ════════════════════════════════════════════════════
-   접근성 유틸리티
-════════════════════════════════════════════════════ */
-.visually-hidden {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border-width: 0;
 }
