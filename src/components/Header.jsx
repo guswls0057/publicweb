@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import MyLibraryButton from './MyLibraryButton';
 import './Header.css'; // 반응형 CSS 임포트
 import mixboardLogo from '../assets/mixboard-image.png';
 
@@ -13,7 +12,6 @@ const Header = () => {
   };
 
   return (
-    <>
     <header className="header">
       {/* 1. 상단바 영역 (Figma 380:636 반영) */}
       <div className="topBar">
@@ -66,10 +64,6 @@ const Header = () => {
         </form>
       </div>
     </header>
-
-      {/* 스크롤 고정 나의 도서관 버튼 (피그마 380:704) */}
-      <MyLibraryButton />
-      </>
   );
 };
 
