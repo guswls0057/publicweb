@@ -1,0 +1,15 @@
+{
+  "short_name": "수원시도서관",
+  "name": "수원시 통합 도서관",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#ffffff",
+  "theme_color": "#2859c5",
+  "display": "standalone"
+}

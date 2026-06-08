@@ -54,7 +54,9 @@ export default function Footer() {
           </div>
 
           <div className="library-form">
+            <label htmlFor="library-select-combobox" className="visually-hidden">도서관 홈페이지 이동 선택</label>
             <select 
+              id="library-select-combobox"
               value={selectedLibrary} 
               onChange={(e) => setSelectedLibrary(e.target.value)}
               className="library-select"
@@ -65,7 +67,7 @@ export default function Footer() {
                 </option>
               ))}
             </select>
-            <button onClick={handleGo} className="go-button">GO</button>
+            <button type="button" onClick={handleGo} className="go-button">GO</button>
           </div>
         </div>
 
@@ -83,14 +85,14 @@ export default function Footer() {
         </div>
 
         <div className="footer-social">
-          <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer">
-            <img src={blogicon} alt="블로그" />
+          <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" aria-label="수원시 도서관 블로그 새창으로 열기">
+            <img src={blogicon} alt="블로그" width={60} height={60} />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src={facebookicon} alt="페이스북" />
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="수원시 도서관 페이스북 새창으로 열기">
+            <img src={facebookicon} alt="페이스북" width={60} height={60} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src={instagramicon} alt="인스타그램" />
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="수원시 도서관 인스타그램 새창으로 열기">
+            <img src={instagramicon} alt="인스타그램" width={60} height={60} />
           </a>
         </div>
       </div>

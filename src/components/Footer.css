@@ -1,6 +1,6 @@
 .site-footer {
   padding: 160px 20px 80px;
-  background: inherit;
+  background-color: #ffffff;
   border-top: 1px solid #ddd;
 }
 
@@ -121,7 +121,7 @@
 
 .footer-address {
   font-size: 0.9rem;
-  color: #555;
+  color: #222222;
   margin-bottom: 15px;
   line-height: 1.6;
   padding-top: 30px;
@@ -129,7 +129,7 @@
 
 .footer-contact {
   font-size: 0.9rem;
-  color: #555;
+  color: #222222;
   margin-bottom: 15px;
   display: flex;
   justify-content: center;
@@ -138,7 +138,7 @@
 
 .footer-copyright {
   font-size: 0.85rem;
-  color: #777;
+  color: #222222;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -198,39 +198,37 @@
   }
 
   .go-button {
-    .go-button {
-      /* 콤보박스와 동일한 높이 설정 */
-      height: 40px% !important;
-      width: auto !important;
+    /* 콤보박스와 동일한 높이 설정 */
+    height: 40px !important;
+    width: auto !important;
 
-      /* 패딩 조정 */
-      padding: 0 20px !important;
+    /* 패딩 조정 */
+    padding: 0 20px !important;
 
-      /* 높이 계산을 정확하게 맞추기 위함 */
-      box-sizing: border-box !important;
+    /* 높이 계산을 정확하게 맞추기 위함 */
+    box-sizing: border-box !important;
 
-      background-color: #555;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .footer-contact {
-      flex-direction: column;
-      gap: 10px;
-    }
+  .footer-contact {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .footer-selector {
-      display: flex;
-      flex-direction: column; /* 두 줄 구조는 유지 */
-      align-items: center; /* 가로로 퍼지지 않게 중앙으로 모음 */
-      gap: 15px;
-      width: 100%;
-    }
+  .footer-selector {
+    display: flex;
+    flex-direction: column; /* 두 줄 구조는 유지 */
+    align-items: center; /* 가로로 퍼지지 않게 중앙으로 모음 */
+    gap: 15px;
+    width: 100%;
   }
 }

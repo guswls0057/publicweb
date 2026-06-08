@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './SubwayLoanPage.css';
 
 /* ══════════════════════════════════════════════════════════
@@ -59,6 +59,7 @@ const SubwayLoanPage = ({ onBack }) => {
         <h3 className="subway-loan-sec-title">운영장소 및 제공서비스</h3>
         <div className="subway-loan-table-wrapper">
           <table className="subway-loan-table">
+            <caption className="visually-hidden">지하철 무인 대출 서비스 운영장소 및 제공서비스 정보</caption>
             <thead>
               <tr>
                 <th scope="col">구분</th>

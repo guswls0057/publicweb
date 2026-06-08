@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Header.css'; // 반응형 CSS 임포트
 import mixboardLogo from '../assets/mixboard-image.png';
 
@@ -34,7 +34,7 @@ const Header = ({ onSearch, onLogoClick }) => {
             }}
             aria-label="수원시 통합 도서관 메인페이지로 이동"
           >
-            <img src={mixboardLogo} alt="믹스보드 로고" className="logoImagePlaceholder" />
+            <img src={mixboardLogo} alt="믹스보드 로고" width={56} height={56} className="logoImagePlaceholder" />
             <h1 className="logoText">수원시 통합 도서관</h1>
           </div>
           

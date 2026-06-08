@@ -148,7 +148,7 @@
 
 /* 붉은색 삼각형 불릿 */
 .bullet-red-arrow {
-  color: #e05a47;
+  color: #b92c28;
   font-size: 12px;
   margin-top: 1px;
   flex-shrink: 0;
@@ -156,12 +156,12 @@
 
 /* 붉은색 안내 텍스트 */
 .text-red {
-  color: #d9534f;
+  color: #b92c28;
   font-weight: 600;
 }
 
 .text-red-bold {
-  color: #d9534f;
+  color: #b92c28;
   font-weight: 700;
 }
 

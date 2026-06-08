@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './SearchResultPage.css';
 
 /* ══════════════════════════════════════════════════════════
@@ -119,7 +119,7 @@ const BOOKS_DATA = [
   }
 ];
 
-const SearchResultPage = ({ searchQuery }) => {
+const SearchResultPage = () => {
   // 어떤 책의 소장 정보 아코디언이 열려 있는지 보관하는 state
   const [expandedBookId, setExpandedBookId] = useState(null);
 
@@ -133,6 +133,7 @@ const SearchResultPage = ({ searchQuery }) => {
 
   return (
     <div className="search-result-container">
+      <h2 className="visually-hidden">도서 검색 결과</h2>
       {/* 도서 목록 리스트 */}
       <div className="search-result-list">
         {BOOKS_DATA.map((book) => {
@@ -145,12 +146,12 @@ const SearchResultPage = ({ searchQuery }) => {
               <div className="book-card-main">
                 {/* 도서 표지 이미지 */}
                 <div className="book-cover-wrapper">
-                  <img src={book.coverImage} alt={`${book.title} 표지`} className="book-cover-img" />
+                  <img src={book.coverImage} alt={`${book.title} 표지`} width={100} height={140} className="book-cover-img" />
                 </div>
 
                 {/* 도서 서지 정보 */}
                 <div className="book-meta-info">
-                  <h4 className="book-title">{book.title}</h4>
+                  <h3 className="book-title">{book.title}</h3>
                   <dl className="book-meta-list">
                     <div className="meta-row">
                       <dt>저자</dt>
@@ -256,20 +257,20 @@ const SearchResultPage = ({ searchQuery }) => {
       {/* 페이지네이션 (피그마 시안 포맷 매치) */}
       <nav className="search-result-pagination" aria-label="검색 결과 페이지 선택">
         <ul className="pagination-list">
-          <li className="page-nav-arrow"><button aria-label="처음 페이지로 이동">≪</button></li>
-          <li className="page-nav-arrow"><button aria-label="이전 10페이지로 이동">＜</button></li>
-          <li className="page-number-item active"><button>1</button></li>
-          <li className="page-number-item"><button>2</button></li>
-          <li className="page-number-item"><button>3</button></li>
-          <li className="page-number-item"><button>4</button></li>
-          <li className="page-number-item"><button>5</button></li>
-          <li className="page-number-item"><button>6</button></li>
-          <li className="page-number-item"><button>7</button></li>
-          <li className="page-number-item"><button>8</button></li>
-          <li className="page-number-item"><button>9</button></li>
-          <li className="page-number-item"><button>10</button></li>
-          <li className="page-nav-arrow"><button aria-label="다음 10페이지로 이동">＞</button></li>
-          <li className="page-nav-arrow"><button aria-label="마지막 페이지로 이동">≫</button></li>
+          <li className="page-nav-arrow"><button type="button" aria-label="처음 페이지로 이동">≪</button></li>
+          <li className="page-nav-arrow"><button type="button" aria-label="이전 10페이지로 이동">＜</button></li>
+          <li className="page-number-item active"><button type="button" aria-current="page" aria-label="1페이지">1</button></li>
+          <li className="page-number-item"><button type="button" aria-label="2페이지로 이동">2</button></li>
+          <li className="page-number-item"><button type="button" aria-label="3페이지로 이동">3</button></li>
+          <li className="page-number-item"><button type="button" aria-label="4페이지로 이동">4</button></li>
+          <li className="page-number-item"><button type="button" aria-label="5페이지로 이동">5</button></li>
+          <li className="page-number-item"><button type="button" aria-label="6페이지로 이동">6</button></li>
+          <li className="page-number-item"><button type="button" aria-label="7페이지로 이동">7</button></li>
+          <li className="page-number-item"><button type="button" aria-label="8페이지로 이동">8</button></li>
+          <li className="page-number-item"><button type="button" aria-label="9페이지로 이동">9</button></li>
+          <li className="page-number-item"><button type="button" aria-label="10페이지로 이동">10</button></li>
+          <li className="page-nav-arrow"><button type="button" aria-label="다음 10페이지로 이동">＞</button></li>
+          <li className="page-nav-arrow"><button type="button" aria-label="마지막 페이지로 이동">≫</button></li>
         </ul>
       </nav>
 

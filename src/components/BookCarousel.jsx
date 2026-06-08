@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './BookCarousel.css';
 
 /**
@@ -81,22 +81,31 @@ const BookCarousel = ({ title, books, carouselId }) => {
           aria-label={`${title} 목록`}
           aria-live="polite"
         >
-          {visibleBooks.map((book) => (
-            <a
-              key={book.id}
-              href={`#book-${book.id}`}
-              className="bookCoverCard"
-              aria-label={`${book.alt} 자세히 보기`}
-            >
-              <img
-                src={book.src}
-                alt={book.alt}
-                className="bookCoverImg"
-                loading="lazy"
-                draggable={false}
-              />
-            </a>
-          ))}
+          {visibleBooks.map((book) => {
+            const isLcpCandidate = carouselId === 'recommended' && currentPage === 0;
+            return (
+              <a
+                key={book.id}
+                href={`#book-${book.id}`}
+                className="bookCoverCard"
+                aria-label={`${book.alt} 자세히 보기`}
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <img
+                  src={book.src}
+                  alt={book.alt}
+                  width={110}
+                  height={162}
+                  className="bookCoverImg"
+                  loading={isLcpCandidate ? undefined : "lazy"}
+                  fetchpriority={isLcpCandidate ? "high" : undefined}
+                  draggable={false}
+                />
+              </a>
+            );
+          })}
         </div>
       </div>
 
