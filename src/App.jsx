@@ -80,7 +80,7 @@ function App() {
   return (
     <>
       {/* 화면 낭독기를 위한 건너뛰기 링크 (접근성) */}
-      <a href="#main-content" className="visually-hidden" style={{ position: 'absolute', top: 0, left: 0, padding: '10px', background: '#000', color: '#fff', zIndex: 100 }}>
+      <a href="#main-content" className="skip-link">
         본문 바로가기
       </a>
       

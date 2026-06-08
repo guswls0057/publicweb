@@ -8,6 +8,10 @@
   <meta name="description" content="수원시 통합 도서관 - 지하철 무인 대출(책나루) 등 도서관 서비스를 이용하세요." />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="manifest" href="./manifest.json" />
+  <!-- LCP 이미지 우선 다운로드 예약 -->
+  <link rel="preload" as="image" href="./book01.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" href="./book02.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" href="./book03.svg" type="image/svg+xml" />
   <!-- Figma 디자인 반영: Pretendard 폰트 비동기 로딩으로 렌더링 차단 제거 -->
   <link rel="stylesheet" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"

@@ -138,3 +138,21 @@ button:hover {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Skip Link - 포커스 시 노출되도록 개선 */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #111111;
+  color: #ffffff;
+  padding: 12px 24px;
+  z-index: 1000;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 0;
+}
