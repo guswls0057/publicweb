@@ -10,13 +10,13 @@ import './SearchResultPage.css';
 const BOOKS_DATA = [
   {
     id: 1,
-    title: '노인과 바다',
-    author: '어니스트 헤밍웨이 저자, 황동규 옮김',
-    publisher: '민음',
-    year: '2003',
-    category: '[국내단행본]일반자료실',
-    callNumber: '808.9-민음ㅅ-v.84',
-    status: '대출가능[비치중]',
+    title: '노인과바다',
+    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
+    publisher: '중앙',
+    year: '2009',
+    category: '[서수원]어린이자료실',
+    callNumber: '아 808.9-사15ㅈ-64',
+    status: '대출가능(비치중)',
     isAvailable: true,
     reserveLimit: '0/2',
     reserveInfo: '대출중인 자료만 예약가능',
@@ -25,7 +25,7 @@ const BOOKS_DATA = [
       {
         id: 'hold-1',
         library: '서수원',
-        location: '[서수원](서고일반)-데스크 문의',
+        location: '[서수원]서고(일반)-데스크 문의',
         callNo: '843-헤38ㄴ',
         statusText: '○ 대출가능(비치중)',
         isAvailable: true,
@@ -35,22 +35,22 @@ const BOOKS_DATA = [
         id: 'hold-2',
         library: '선경',
         location: '[선경]종합자료실',
-        callNo: '843-헤38ㄴ-2',
-        statusText: '× 대출불가(대출중)',
+        callNo: '843-헤38ㄴ=2',
+        statusText: 'X 대출불가(대출중)',
         isAvailable: false,
-        buttonText: '자세히/무인 대출 예약',
+        buttonText: '지하철 무인 대출 예약',
       }
     ]
   },
   {
     id: 2,
-    title: '노인과 바다',
-    author: '어니스트 헤밍웨이 저자, 김욱동 옮김',
-    publisher: '혜원',
-    year: '2011',
-    category: '[국내단행본]일반자료실',
-    callNumber: '808.9-민음ㅅ-v.84',
-    status: '대출가능[비치중]',
+    title: '노인과바다',
+    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
+    publisher: '중앙',
+    year: '2009',
+    category: '[서수원]어린이자료실',
+    callNumber: '아 808.9-사15ㅈ-64',
+    status: '대출가능(비치중)',
     isAvailable: true,
     reserveLimit: '0/2',
     reserveInfo: '대출중인 자료만 예약가능',
@@ -69,13 +69,13 @@ const BOOKS_DATA = [
   },
   {
     id: 3,
-    title: '노인과 바다',
-    author: '어니스트 헤밍웨이 저자, 정회성 옮김',
-    publisher: '공존',
+    title: '노인과바다',
+    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
+    publisher: '중앙',
     year: '2009',
-    category: '[국내단행본]아동실',
-    callNumber: '808.9-민음ㅅ-v.84',
-    status: '대출가능[비치중]',
+    category: '[서수원]어린이자료실',
+    callNumber: '아 808.9-사15ㅈ-64',
+    status: '대출가능(비치중)',
     isAvailable: true,
     reserveLimit: '0/2',
     reserveInfo: '대출중인 자료만 예약가능',
@@ -94,13 +94,13 @@ const BOOKS_DATA = [
   },
   {
     id: 4,
-    title: '노인과 바다',
-    author: '어니스트 헤밍웨이 저자, 정태원 옮김',
-    publisher: '동서',
-    year: '2008',
-    category: '[국내단행본]아동실',
-    callNumber: '808.9-민음ㅅ-v.84',
-    status: '대출가능[비치중]',
+    title: '노인과바다',
+    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
+    publisher: '중앙',
+    year: '2009',
+    category: '[서수원]어린이자료실',
+    callNumber: '아 808.9-사15ㅈ-64',
+    status: '대출가능(비치중)',
     isAvailable: true,
     reserveLimit: '0/2',
     reserveInfo: '대출중인 자료만 예약가능',
@@ -120,8 +120,8 @@ const BOOKS_DATA = [
 ];
 
 const SearchResultPage = () => {
-  // 어떤 책의 소장 정보 아코디언이 열려 있는지 보관하는 state
-  const [expandedBookId, setExpandedBookId] = useState(null);
+  // 어떤 책의 소장 정보 아코디언이 열려 있는지 보관하는 state (시안과 일치시키기 위해 1번 도서 기본 활성화)
+  const [expandedBookId, setExpandedBookId] = useState(1);
 
   const toggleHoldings = (bookId) => {
     setExpandedBookId((prev) => (prev === bookId ? null : bookId));
@@ -144,9 +144,9 @@ const SearchResultPage = () => {
               
               {/* 도서 기본 정보 레이아웃 */}
               <div className="book-card-main">
-                {/* 도서 표지 이미지 */}
+                {/* 도서 표지 이미지 - 피그마 시안에 부합하는 빈 플레이스홀더 디자인 */}
                 <div className="book-cover-wrapper">
-                  <img src={book.coverImage} alt={`${book.title} 표지`} width={100} height={140} className="book-cover-img" />
+                  <div className="book-cover-placeholder" aria-hidden="true"></div>
                 </div>
 
                 {/* 도서 서지 정보 */}
@@ -166,7 +166,7 @@ const SearchResultPage = () => {
                       <dd>{book.year}</dd>
                     </div>
                     <div className="meta-row">
-                      <dt>자료분류</dt>
+                      <dt>자료위치</dt>
                       <dd>{book.category}</dd>
                     </div>
                     <div className="meta-row">
@@ -195,7 +195,7 @@ const SearchResultPage = () => {
                 aria-expanded={isExpanded}
                 aria-controls={`holdings-panel-${book.id}`}
               >
-                <span>{isExpanded ? '▲ 소장정보 닫기' : '▼ 소장정보'}</span>
+                <span>▽ 소장정보</span>
               </button>
 
               {/* 소장 정보 상세 패널 (아코디언 영역) */}
@@ -205,9 +205,9 @@ const SearchResultPage = () => {
                   className="holdings-detail-panel"
                 >
                   <div className="holdings-panel-inner">
-                    {/* 수령도서관 헤더 */}
+                    {/* 소장도서관 헤더 */}
                     <div className="holdings-header-bar">
-                      수령도서관 <span className="highlight-red">{book.holdings.length}</span>
+                      소장도서관 <span className="highlight-red">{book.holdings.length}</span>
                     </div>
 
                     {/* 소장처 카드 리스트 */}

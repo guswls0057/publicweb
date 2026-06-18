@@ -98,7 +98,7 @@
   font-family: var(--font-family-base);
   color: #000000;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   text-align: left;
 }
 
@@ -106,20 +106,20 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 400px;
-  gap: 4px;
+  max-width: 600px;
+  gap: 8px;
 }
 
 .searchInput {
   flex: 1;
   height: 44px;
   padding: 12px 16px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
-  color: #484848;
+  color: #111111;
   background-color: #ffffff;
-  border: 2px solid #2859c5;
-  border-radius: 8px;
+  border: 2px solid #002f9c;
+  border-radius: 6px;
   outline: none;
   transition: border-color 0.18s ease;
 }
@@ -131,8 +131,8 @@
 .searchIconBtn {
   width: 44px;
   height: 44px;
-  background-color: #2859c5;
-  border-radius: 8px;
+  background-color: #002f9c;
+  border-radius: 6px;
   border: none;
   display: flex;
   align-items: center;
@@ -142,9 +142,8 @@
   transition: background-color 0.18s ease;
 }
 
-/* 호버 시 투명 배경 아닌 약간 어두운 파란색 (기능 버튼이므로) */
 .searchIconBtn:hover {
-  background-color: #1a3d8f;
+  background-color: #002375;
 }
 
 /* =========================================

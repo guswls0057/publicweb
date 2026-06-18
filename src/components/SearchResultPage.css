@@ -62,28 +62,23 @@
 
 /* 도서 표지 이미지 */
 .book-cover-wrapper {
-  width: 100px;
-  height: 140px;
+  width: 80px;
+  height: 112px;
   flex-shrink: 0;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
+  background-color: #ffffff;
+  border: 1.5px solid #e5e8eb;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
 }
 
-.book-cover-img {
-  width: 85%;
-  height: 85%;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.book-card-item:hover .book-cover-img {
-  transform: scale(1.05);
+.book-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
 }
 
 /* 도서 서지 정보 */
@@ -93,11 +88,11 @@
 }
 
 .book-title {
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
   color: #111111;
   margin: 0 0 10px 0;
-  line-height: 1.4;
+  line-height: 1.3;
   word-break: keep-all;
 }
 
@@ -105,61 +100,63 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .meta-row {
   display: flex;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .meta-row dt {
-  width: 65px;
+  width: 70px;
   font-weight: 700;
-  color: #595959;
+  color: #111111; /* 시안에 맞춘 어두운 색상 */
   flex-shrink: 0;
 }
 
 .meta-row dd {
   margin: 0;
-  color: #495057;
+  color: #484848;
   font-weight: 500;
   word-break: break-all;
 }
 
 /* ── 4. 대출 가능 태그 박스 ── */
 .book-loan-status-box {
-  background-color: #f8f9fc;
-  border: 1px solid #edf2f7;
-  border-radius: 8px;
-  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 16px;
   margin-bottom: 14px;
+  box-sizing: border-box;
 }
 
 .loan-status-tag {
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 13.5px;
+  font-weight: 700;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   letter-spacing: -0.2px;
 }
 
 .loan-status-tag.active {
-  color: #2859c5;
+  color: #002f9c;
 }
 
 .loan-status-desc {
-  font-size: 12px;
-  color: #495057;
+  font-size: 12.5px;
+  color: #484848;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   font-weight: 500;
+  line-height: 1.4;
 }
 
 .loan-status-desc strong {
-  color: #d9534f;
+  color: #002f9c;
   font-weight: 700;
 }
 
@@ -167,34 +164,35 @@
 .holdings-toggle-btn {
   width: 100%;
   border: none;
-  background-color: #495057;
+  background-color: #484848;
   color: #ffffff;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
-  padding: 11px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .holdings-toggle-btn:hover {
-  background-color: #343a40;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #333333;
 }
 
 .holdings-toggle-btn.is-open {
-  background-color: #212529;
+  background-color: #484848;
 }
 
 /* ── 6. 소장 정보 상세 패널 (아코디언) ── */
 .holdings-detail-panel {
-  margin-top: 18px;
-  border-top: 1px dashed #e9ecef;
-  padding-top: 16px;
+  margin-top: 14px;
+  border: 1.5px solid #e5e8eb;
+  border-radius: 6px;
+  padding: 16px;
+  background-color: #ffffff;
+  box-sizing: border-box;
   animation: srpSlideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -214,88 +212,93 @@
   flex-direction: column;
 }
 
-/* 수령도서관 헤더 */
+/* 소장도서관 헤더 */
 .holdings-header-bar {
   font-size: 14px;
-  font-weight: 800;
-  color: #212529;
-  margin-bottom: 12px;
-  border-bottom: 2px solid #e9ecef;
-  padding-bottom: 6px;
-  width: fit-content;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: left;
+  border: 1.5px solid #e5e8eb;
+  background-color: #fafafa;
+  padding: 12px 16px;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .highlight-red {
   color: #d9534f;
-  font-weight: 800;
-  margin-left: 2px;
+  font-weight: 700;
+  margin-left: 4px;
 }
 
-/* 소장처 카드 목록 */
+/* 소장처 목록 */
 .holdings-cards-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 /* 소장처 개별 카드 */
 .holding-library-card {
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 14px 16px;
-  background-color: #fdfdfd;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s ease;
+  box-shadow: none;
 }
 
-.holding-library-card:hover {
-  border-color: #ced4da;
+/* 소장처 목록 내 아이템 구분선 (첫 번째 자식 제외) */
+.holding-library-card:not(:first-child) {
+  border-top: 1.5px solid #e5e8eb;
+  padding-top: 16px;
 }
 
 .holding-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .holding-library-name {
-  font-size: 14px;
-  font-weight: 800;
-  color: #212529;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #111111;
 }
 
 .holding-status-badge {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
 }
 
 .holding-status-badge.available {
-  color: #2859c5;
+  color: #002f9c;
 }
 
 .holding-status-badge.unavailable {
-  color: #595959;
+  color: #484848;
 }
 
 .holding-card-body {
-  font-size: 13px;
-  line-height: 1.5;
-  color: #495057;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #484848;
   margin-bottom: 12px;
+  text-align: left;
 }
 
 .holding-location {
-  margin: 0 0 3px 0;
+  margin: 0 0 4px 0;
   font-weight: 500;
 }
 
 .holding-call-no {
   margin: 0;
-  font-weight: 700;
-  color: #111111;
+  font-weight: 500;
 }
 
 .holding-card-action {
@@ -309,7 +312,7 @@
   font-size: 13px;
   font-weight: 700;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
@@ -317,21 +320,19 @@
 }
 
 .subway-reserve-btn.active {
-  background-color: #002f9c; /* 피그마 다크 블루 */
+  background-color: #002f9c;
   color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 47, 156, 0.15);
 }
 
 .subway-reserve-btn.active:hover {
   background-color: #002375;
-  box-shadow: 0 4px 8px rgba(0, 47, 156, 0.25);
 }
 
 .subway-reserve-btn.disabled {
-  background-color: #f1f3f5;
-  color: #adb5bd;
+  background-color: #f5f5f5;
+  color: #888888;
+  border: 1px solid #e2e2e2;
   cursor: not-allowed;
-  border: 1px solid #dee2e6;
 }
 
 /* ── 7. 페이지네이션 ── */
@@ -353,14 +354,14 @@
 }
 
 .pagination-list button {
-  border: 1px solid #dee2e6;
-  background-color: #ffffff;
-  color: #495057;
+  border: none;
+  background-color: transparent;
+  color: #333333;
   font-size: 14px;
   font-weight: 600;
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,21 +371,26 @@
 }
 
 .pagination-list button:hover {
-  border-color: #2859c5;
-  color: #2859c5;
-  background-color: #f8f9fc;
+  background-color: #f1f3f5;
+  color: #002f9c;
 }
 
 .page-number-item.active button {
-  background-color: #2859c5;
+  background-color: #002f9c;
   color: #ffffff;
-  border-color: #2859c5;
-  box-shadow: 0 2px 6px rgba(40, 89, 197, 0.2);
+  border: none;
+  box-shadow: none;
 }
 
 .page-nav-arrow button {
-  background-color: #f8f9fa;
-  font-size: 11px;
+  background-color: transparent;
+  color: #888888;
+  font-size: 14px;
+}
+
+.page-nav-arrow button:hover {
+  background-color: #f1f3f5;
+  color: #002f9c;
 }
 
 /* ── 8. 반응형 미디어 쿼리 ── */

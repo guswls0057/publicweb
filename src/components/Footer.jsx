@@ -4,23 +4,6 @@ import blogicon from '../assets/blog-icon.png';
 import facebookicon from '../assets/facebook-icon.png';
 import instagramicon from '../assets/instagram-icon.png';
 
-const footerLinks = [
-  { label: '휴관일 안내', href: '/휴관일안내' },
-  { label: '도서관 소개', href: '/도서관소개' },
-  { label: '이용시간안내', href: '/이용시간안내' },
-  { label: '도서관 전자잡지', href: '/도서관전자잡지' },
-  { label: '행정서비스헌장', href: '/행정서비스헌장' },
-  { label: '대출회원가입', href: '/대출회원가입' },
-  { label: '특화자료', href: '/특화자료' },
-  { label: '조직도', href: '/조직도' },
-  { label: '전자도서관', href: '/전자도서관' },
-  { label: '자료기증', href: '/자료기증' },
-  { label: '현황안내', href: '/현황안내' },
-  { label: '도서관서비스', href: '/도서관서비스' },
-  { label: '오시는길', href: '/오시는길' },
-  { label: 'FAQ', href: '/FAQ' },
-];
-
 const libraries = [
   { value: 'central', label: '중앙도서관' },
   { value: 'paldal', label: '팔달도서관' },
@@ -38,19 +21,11 @@ export default function Footer() {
 
   return (
     <footer className="site-footer">
-      <div className="footer-links">
-        {footerLinks.map((item) => (
-          <a key={item.label} href={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </div>
-
       <div className="footer-info-section">
         <div className="footer-selector">
           <div className="selector-group">
-            <label>개인정보처리방침</label>
-            <label>홈페이지이용약관</label>
+            <span className="privacy-policy">개인정보처리방침</span>
+            <span className="terms-of-use">홈페이지이용약관</span>
           </div>
 
           <div className="library-form">

@@ -1,73 +1,54 @@
 .site-footer {
-  padding: 160px 20px 80px;
+  padding: 60px 20px;
   background-color: #ffffff;
-  border-top: 1px solid #ddd;
-}
-
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 24px;
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-.footer-links a {
-  color: #333;
-  text-decoration: none;
-  font-size: 0.95rem;
-  display: inline-flex;
-  align-items: center;
-}
-
-.footer-links a::after {
-  content: " 〉";
-  margin-left: 4px;
-}
-
-.footer-links a:hover {
-  color: #0066cc;
-  background-color: transparent;
-}
-
-@media (max-width: 640px) {
-  .footer-links {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  border-top: 1.5px solid #e5e8eb;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .footer-info-section {
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid #ddd;
+  max-width: 1080px;
+  margin: 0 auto;
   text-align: center;
 }
 
 .footer-selector {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
 }
 
 .selector-group {
   display: flex;
-  flex-direction: row !important;
-  flex-wrap: nowrap;
-  gap: 20px;
+  flex-direction: row;
+  gap: 24px;
   justify-content: center;
+  align-items: center;
 }
 
-.selector-group label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #333;
+.privacy-policy {
+  font-size: 15px;
+  font-weight: 700;
+  color: #002f9c;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.selector-group label:hover {
-  color: #0066cc;
+.privacy-policy:hover {
+  text-decoration: underline;
+}
+
+.terms-of-use {
+  font-size: 15px;
+  font-weight: 600;
+  color: #484848;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.terms-of-use:hover {
+  color: #002f9c;
 }
 
 .library-form {
@@ -76,159 +57,154 @@
   gap: 8px;
   align-items: center;
   justify-content: center;
-  padding: 16px 0;
 }
 
 .library-select {
-  padding: 10px 35px 10px 12px;
-  border: 2px solid #333;
+  padding: 10px 36px 10px 12px;
+  border: 1.5px solid #cccccc;
   border-radius: 4px;
-  font-size: 0.9rem;
-  background-color: white;
-  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #ffffff;
+  color: #333333;
   cursor: pointer;
-  min-width: 250px;
+  min-width: 200px;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 20px;
+  background-position: right 12px center;
+  background-size: 16px;
+  box-sizing: border-box;
 }
 
 .library-select:hover {
-  border-color: #0066cc;
+  border-color: #002f9c;
 }
 
 .library-select:focus {
   outline: none;
+  border-color: #002f9c;
 }
 
 .go-button {
-  padding: 12px 32px;
-  background-color: #555;
-  color: white;
+  padding: 10px 24px;
+  background-color: #484848;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
 }
 
 .go-button:hover {
-  background-color: #333;
+  background-color: #333333;
 }
 
 .footer-address {
-  font-size: 0.9rem;
-  color: #222222;
-  margin-bottom: 15px;
-  line-height: 1.6;
-  padding-top: 30px;
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 .footer-contact {
-  font-size: 0.9rem;
-  color: #222222;
-  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 20px;
+  font-weight: 500;
+}
+
+.footer-contact span {
+  display: inline-block;
 }
 
 .footer-copyright {
-  font-size: 0.85rem;
-  color: #222222;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  font-size: 13px;
+  color: #888888;
+  margin-bottom: 24px;
+  margin-top: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
 .footer-social {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .footer-social a {
   display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
 }
 
 .footer-social img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .footer-social a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
+/* ━━ 반응형 미디어 쿼리 ━━ */
 @media (max-width: 640px) {
-  .selector-group {
-    display: flex;
-    flex-direction: row !important; /* 가로 정렬 강제 */
-    justify-content: center;
-    width: auto; /* 꽉 차지 않게 설정 */
-    gap: 15px;
+  .site-footer {
+    padding: 40px 16px;
   }
 
-  .library-form {
-    display: flex;
-    flex-direction: row !important; /* 가로 정렬 강제 */
-    align-items: stretch;
-    justify-content: center;
-    gap: 6px;
-    height: 40px; /* 부모의 높이를 명확히 지정 */
+  .footer-selector {
+    gap: 12px;
+  }
+
+  .selector-group {
+    gap: 16px;
+  }
+
+  .privacy-policy, .terms-of-use {
+    font-size: 14px;
   }
 
   .library-select {
-    min-width: 220px;
-    width: 220px;
-    height: 40px;
-    padding: 0 35px 0 12px !important;
-    font-size: 0.9rem;
-    border: 1px solid #333;
-    border-radius: 4px;
-    box-sizing: border-box !important;
-    display: flex;
-    align-items: center;
+    min-width: 160px;
+    font-size: 13px;
+    padding: 8px 30px 8px 10px;
   }
 
   .go-button {
-    /* 콤보박스와 동일한 높이 설정 */
-    height: 40px !important;
-    width: auto !important;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
 
-    /* 패딩 조정 */
-    padding: 0 20px !important;
-
-    /* 높이 계산을 정확하게 맞추기 위함 */
-    box-sizing: border-box !important;
-
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .footer-address, .footer-contact {
+    font-size: 13px;
   }
 
   .footer-contact {
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    align-items: center;
   }
 
-  .footer-selector {
-    display: flex;
-    flex-direction: column; /* 두 줄 구조는 유지 */
-    align-items: center; /* 가로로 퍼지지 않게 중앙으로 모음 */
-    gap: 15px;
-    width: 100%;
+  .footer-copyright {
+    font-size: 12px;
+  }
+
+  .footer-social a {
+    width: 36px;
+    height: 36px;
   }
 }

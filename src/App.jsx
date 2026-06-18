@@ -27,8 +27,8 @@ const popularBooks = Array.from({ length: 10 }, (_, i) => {
 });
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'subway-loan' | 'search-result'
-  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState('search-result'); // 'home' | 'subway-loan' | 'search-result'
+  const [searchQuery, setSearchQuery] = useState('노인과 바다');
   const mainMenus = [
     {
       id: 1,

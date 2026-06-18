@@ -3,7 +3,7 @@ import './Header.css'; // 반응형 CSS 임포트
 import mixboardLogo from '../assets/mixboard-image.png';
 
 const Header = ({ onSearch, onLogoClick }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('노인과 바다');
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const Header = ({ onSearch, onLogoClick }) => {
             aria-label="수원시 통합 도서관 메인페이지로 이동"
           >
             <img src={mixboardLogo} alt="믹스보드 로고" width={56} height={56} className="logoImagePlaceholder" />
-            <h1 className="logoText">수원시 통합 도서관</h1>
+            <h1 className="logoText">수원시 도서관 사업소</h1>
           </div>
           
           {/* 우측 아이콘 영역 (메뉴, 로그인) */}
