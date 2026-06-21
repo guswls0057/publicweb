@@ -1,0 +1,529 @@
+/* ══════════════════════════════════════════════════════════
+   지하철 무인 대출 예약 수령 장소 선택 페이지 전용 CSS
+   피그마 시안(node-id: 494-2207) 매칭 및 반응형 레이아웃 설계
+   ══════════════════════════════════════════════════════════ */
+
+/* ── 1. 전체 레이아웃 컨테이너 ── */
+.subway-reserve-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 16px 60px;
+  box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  animation: srpFadeIn 0.35s ease-out;
+}
+
+@keyframes srpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── 2. 헤더 및 뒤로가기 버튼 영역 ── */
+.subway-reserve-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.subway-reserve-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.subway-reserve-back-btn:hover {
+  color: #2859c5;
+  border-color: #2859c5;
+  background-color: #f7f9fc;
+  box-shadow: 0 4px 8px rgba(40, 89, 197, 0.1);
+}
+
+.subway-reserve-back-btn:hover .back-btn-icon {
+  transform: translateX(-3px);
+}
+
+.back-btn-icon {
+  transition: transform 0.2s ease;
+}
+
+.subway-reserve-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* ── 3. 구분선 ── */
+.subway-reserve-divider {
+  width: 100%;
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: 24px;
+}
+
+/* ── 4. 대출/반납 위치 선택 가이드 박스 ── */
+.subway-reserve-guide-box {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 16px;
+  word-break: keep-all;
+  text-align: left;
+}
+
+/* 도서 요약 바 */
+.reserve-book-summary {
+  font-size: 13.5px;
+  color: #495057;
+  padding: 0 4px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.reserve-book-summary .text-blue {
+  color: #2859c5;
+  font-weight: 700;
+}
+
+/* ── 5. 지하철 목록 필드셋 ── */
+.reserve-station-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.station-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* 개별 지하철역 행 아이템 */
+.station-row-item {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  position: relative;
+}
+
+/* 라디오 인풋 숨김 */
+.station-row-radio-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* 좌측 역사 배지 */
+.station-badge-label {
+  width: 100px;
+  background-color: #efefef;
+  color: #333333;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 6px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  flex-shrink: 0;
+  border: 1.5px solid transparent;
+  box-sizing: border-box;
+}
+
+/* 우측 상세 위치 카드 */
+.station-location-card-label {
+  flex: 1;
+  background-color: #ffffff;
+  color: #333333;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e8eb;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.station-location-card-label span {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 호버 시 효과 */
+.station-row-item:hover .station-location-card-label {
+  border-color: #a3b8e9;
+}
+
+/* 선택(Checked) 상태 연동 */
+.station-row-radio-input:checked~.station-location-card-label {
+  border-color: #2859c5;
+  background-color: #f3f6fc;
+  box-shadow: 0 4px 12px rgba(40, 89, 197, 0.08);
+  color: #2859c5;
+}
+
+.station-row-radio-input:checked~.station-badge-label {
+  background-color: #2859c5;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(40, 89, 197, 0.08);
+}
+
+/* 키보드 포커싱 활성화 시 아웃라인 처리 (웹 접근성 준수) */
+.station-row-radio-input:focus-visible~.station-location-card-label {
+  outline: 2.5px solid #2859c5;
+  outline-offset: 2px;
+}
+
+/* ── 6. 에러 피드백 ── */
+.reserve-form-error {
+  font-size: 13.5px;
+  color: #d9534f;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  text-align: left;
+  padding-left: 4px;
+}
+
+/* ── 7. 하단 액션바 및 버튼 ── */
+.reserve-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn-reserve-submit {
+  border: none;
+  background-color: #3b5bdb;
+  /* 피그마 시안에 적합한 살짝 푸른빛 블루 */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(59, 91, 219, 0.2);
+}
+
+.btn-reserve-submit:hover {
+  background-color: #0B2692;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(43, 73, 196, 0.3);
+}
+
+.btn-reserve-submit:focus-visible {
+  outline: 2px solid #3b5bdb;
+  outline-offset: 2px;
+}
+
+/* ── 8. 반응형 미디어 쿼리 ── */
+
+/* ━━ 태블릿 버전 (768px ~ 1023px) ━━ */
+@media (min-width: 768px) {
+  .subway-reserve-container {
+    padding: 40px 24px 80px;
+  }
+
+  .subway-reserve-title {
+    font-size: 26px;
+  }
+
+  .subway-reserve-guide-box {
+    padding: 18px 24px;
+    font-size: 16px;
+  }
+
+  .reserve-book-summary {
+    font-size: 14.5px;
+    margin-bottom: 28px;
+  }
+
+  .station-badge-label {
+    width: 140px;
+    font-size: 14px;
+    padding: 14px 10px;
+  }
+
+  .station-location-card-label {
+    font-size: 14.5px;
+    padding: 14px 20px;
+  }
+
+  .btn-reserve-submit {
+    font-size: 15px;
+    padding: 11px 32px;
+  }
+}
+
+/* ━━ 데스크탑 버전 (1024px 이상) ━━ */
+@media (min-width: 1024px) {
+  .subway-reserve-container {
+    padding: 50px 40px 100px;
+  }
+
+  .subway-reserve-title {
+    font-size: 28px;
+  }
+
+  .station-badge-label {
+    width: 160px;
+    font-size: 14.5px;
+  }
+
+  .station-location-card-label {
+    font-size: 15px;
+    padding: 14px 24px;
+  }
+}
+
+/* ── 9. 확정 안내 팝업 스타일 (Figma 494:2297 시안 매칭) ── */
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  animation: confirmFadeIn 0.22s ease-out;
+}
+
+@keyframes confirmFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.confirm-modal-card {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 480px;
+  border-radius: 8px;
+  border: 1px solid #777777;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: confirmSlideUp 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes confirmSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 팝업 헤더 */
+.confirm-header {
+  position: relative;
+  padding: 14px 16px;
+  border-bottom: 1.5px solid #cccccc;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.confirm-modal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.confirm-modal-title:focus {
+  outline: none;
+}
+
+.confirm-close-btn {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  color: #555555;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.confirm-close-btn:hover {
+  color: #111111;
+}
+
+.confirm-close-btn:focus-visible {
+  outline: 2px solid #0b2692;
+  border-radius: 4px;
+}
+
+/* 팝업 바디 */
+.confirm-body {
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.confirm-main-info {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 10px 0;
+  word-break: keep-all;
+  letter-spacing: -0.2px;
+}
+
+.confirm-sub-info {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 16px 0;
+  word-break: keep-all;
+}
+
+.confirm-warning-info {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #c92a2a;
+  /* 피그마 강렬한 경고용 빨간색 */
+  margin: 0;
+  word-break: keep-all;
+}
+
+/* 팝업 액션 영역 */
+.confirm-action-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.btn-confirm-back,
+.btn-confirm-submit {
+  border: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-confirm-back {
+  background-color: #C7E5FF;
+  /* 연파랑 */
+  color: #000000;
+}
+
+.btn-confirm-back:hover {
+  background-color: #2859C5;
+  color: #ffffff;
+}
+
+.btn-confirm-submit {
+  background-color: #2859C5;
+  /* 진파랑 */
+  color: #ffffff;
+}
+
+.btn-confirm-submit:hover {
+  background-color: #0B2692;
+  color: #ffffff;
+}
+
+.btn-confirm-back:focus-visible,
+.btn-confirm-submit:focus-visible {
+  outline: 2px solid #0b2692;
+  outline-offset: 2px;
+}
+
+/* 태블릿 및 데스크탑 최적화 */
+@media (min-width: 768px) {
+  .confirm-modal-card {
+    max-width: 500px;
+    border-radius: 10px;
+  }
+
+  .confirm-header {
+    padding: 16px 20px;
+  }
+
+  .confirm-modal-title {
+    font-size: 17px;
+  }
+
+  .confirm-body {
+    padding: 30px 24px;
+  }
+
+  .confirm-main-info,
+  .confirm-sub-info {
+    font-size: 18px;
+  }
+
+  .confirm-warning-info {
+    font-size: 13px;
+  }
+}

@@ -9,7 +9,8 @@
   padding: var(--spacing-xl) 16px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 가운데 정렬 */
+  align-items: center;
+  /* 가운데 정렬 */
   gap: 24px;
 }
 
@@ -150,7 +151,8 @@
 .subwayInfoLink:hover {
   text-decoration: underline;
   color: #000000;
-  background-color: transparent; /* 검정 배경 없음 */
+  background-color: transparent;
+  /* 검정 배경 없음 */
 }
 
 /* subwayInfoLink를 button으로 사용할 때 button 기본 스타일 제거 */
@@ -315,5 +317,196 @@ button.subwayInfoLink {
   .BooksSection {
     padding: 0 32px;
     margin: 40px auto;
+  }
+}
+
+/* ── 최종 예약 확정 완료 팝업 스타일 (Figma 494:1966 시안 매칭) ── */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3100;
+  /* confirm-overlay보다 높은 z-index로 안전 설정 */
+  animation: successFadeIn 0.22s ease-out;
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.success-modal-card {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 480px;
+  border-radius: 8px;
+  border: 1px solid #777777;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: successSlideUp 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes successSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-header {
+  position: relative;
+  padding: 14px 16px;
+  border-bottom: 1.5px solid #cccccc;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.success-modal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.success-modal-title:focus {
+  outline: none;
+}
+
+.success-close-btn {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  color: #555555;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.success-close-btn:hover {
+  color: #111111;
+}
+
+.success-close-btn:focus-visible {
+  outline: 2px solid #0b2692;
+  border-radius: 4px;
+}
+
+.success-body {
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.success-main-info {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 10px 0;
+  word-break: keep-all;
+  letter-spacing: -0.2px;
+}
+
+.success-sub-info {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 16px 0;
+  word-break: keep-all;
+}
+
+.success-warning-info {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #c92a2a;
+  /* 피그마 빨간색 */
+  margin: 0;
+  word-break: keep-all;
+}
+
+.success-action-row {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 24px;
+}
+
+.btn-success-ok {
+  border: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 10px 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  background-color: #2859C5;
+  /* 진파랑 */
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(11, 38, 146, 0.2);
+}
+
+.btn-success-ok:hover {
+  background-color: #0B2692;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(8, 29, 111, 0.3);
+}
+
+.btn-success-ok:focus-visible {
+  outline: 2px solid #0b2692;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .success-modal-card {
+    max-width: 500px;
+    border-radius: 10px;
+  }
+
+  .success-header {
+    padding: 16px 20px;
+  }
+
+  .success-modal-title {
+    font-size: 17px;
+  }
+
+  .success-body {
+    padding: 30px 24px;
+  }
+
+  .success-main-info,
+  .success-sub-info {
+    font-size: 18px;
+  }
+
+  .success-warning-info {
+    font-size: 13px;
   }
 }

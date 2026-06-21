@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BookCarousel from './components/BookCarousel';
-import SubwayLoanPage from './components/SubwayLoanPage';
 import SearchResultPage from './components/SearchResultPage';
 import './App.css'; // 메인메뉴 및 추가 영역 CSS 임포트
+
+const SubwayLoanPage = lazy(() => import('./components/SubwayLoanPage'));
+const SubwayReservePage = lazy(() => import('./components/SubwayReservePage'));
 
 // 추천도서 데이터 (book01 ~ book10, /public 폴더)
 const recommendedBooks = Array.from({ length: 10 }, (_, i) => {
@@ -27,8 +29,10 @@ const popularBooks = Array.from({ length: 10 }, (_, i) => {
 });
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('search-result'); // 'home' | 'subway-loan' | 'search-result'
-  const [searchQuery, setSearchQuery] = useState('노인과 바다');
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'subway-loan' | 'search-result' | 'subway-reserve'
+  const [searchQuery, setSearchQuery] = useState('');
+  const [reserveBook, setReserveBook] = useState({ title: '', library: '', station: '', date: '' });
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const mainMenus = [
     {
       id: 1,
@@ -85,6 +89,8 @@ function App() {
       </a>
       
       <Header 
+        currentPage={currentPage}
+        searchQuery={searchQuery}
         onSearch={(q) => {
           setSearchQuery(q);
           const normalized = q.trim().replace(/\s/g, '');
@@ -101,7 +107,8 @@ function App() {
       />
       
       <main id="main-content">
-        {currentPage === 'home' ? (
+        <Suspense fallback={null}>
+          {currentPage === 'home' ? (
           <>
             {/* Figma 380:651 노드 반영: 메인메뉴 (아이콘 모음) */}
             <section aria-labelledby="main-menu-heading" className="mainMenuSection">
@@ -168,11 +175,88 @@ function App() {
           </>
         ) : currentPage === 'subway-loan' ? (
           <SubwayLoanPage onBack={() => setCurrentPage('home')} />
+        ) : currentPage === 'subway-reserve' ? (
+          <SubwayReservePage 
+            bookTitle={reserveBook.title}
+            libraryName={reserveBook.library}
+            onBack={() => setCurrentPage('search-result')}
+            onConfirm={(selectedStation, estimatedDate) => {
+              setReserveBook(prev => ({ ...prev, station: selectedStation, date: estimatedDate }));
+              setCurrentPage('home');
+              setShowSuccessPopup(true);
+            }}
+          />
         ) : (
-          <SearchResultPage searchQuery={searchQuery} />
+          <SearchResultPage 
+            searchQuery={searchQuery} 
+            onReserve={(libraryName, bookTitle) => {
+              setReserveBook({ title: bookTitle, library: libraryName });
+              setCurrentPage('subway-reserve');
+            }}
+          />
         )}
+        </Suspense>
       </main>
       <Footer />
+
+      {/* 최종 예약 확정 안내 팝업 (Figma 494:1966 시안) */}
+      {showSuccessPopup && (
+        <div 
+          className="success-overlay"
+          onClick={() => setShowSuccessPopup(false)}
+          role="presentation"
+        >
+          <div 
+            className="success-modal-card"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="success-popup-title"
+          >
+            {/* 팝업 헤더 */}
+            <div className="success-header">
+              <h3 
+                id="success-popup-title" 
+                className="success-modal-title"
+              >
+                지하철 무인 대출 예약 안내
+              </h3>
+              <button 
+                type="button" 
+                onClick={() => setShowSuccessPopup(false)} 
+                className="success-close-btn"
+                aria-label="닫기"
+              >
+                X
+              </button>
+            </div>
+
+            {/* 팝업 바디 */}
+            <div className="success-body">
+              <p className="success-main-info">
+                {reserveBook.station} / {reserveBook.title} / {reserveBook.date}
+              </p>
+              <p className="success-sub-info">
+                예약이 확정 되었습니다
+              </p>
+              <p className="success-warning-info">
+                예약 완료 문자를 확인해 주세요.
+              </p>
+            </div>
+
+            {/* 팝업 하단 액션 버튼 */}
+            <div className="success-action-row">
+              <button 
+                type="button" 
+                onClick={() => setShowSuccessPopup(false)} 
+                className="btn-success-ok"
+              >
+                예약 확인하기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

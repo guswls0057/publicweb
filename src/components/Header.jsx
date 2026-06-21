@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Header.css'; // 반응형 CSS 임포트
 import mixboardLogo from '../assets/mixboard-image.png';
 
-const Header = ({ onSearch, onLogoClick }) => {
-  const [searchQuery, setSearchQuery] = useState('노인과 바다');
+const Header = ({ onSearch, onLogoClick, currentPage, searchQuery: propSearchQuery }) => {
+  const [searchQuery, setSearchQuery] = useState(propSearchQuery || '');
+
+  useEffect(() => {
+    setSearchQuery(propSearchQuery || '');
+  }, [propSearchQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -32,7 +36,7 @@ const Header = ({ onSearch, onLogoClick }) => {
                 onLogoClick();
               }
             }}
-            aria-label="수원시 통합 도서관 메인페이지로 이동"
+            aria-label="수원시 도서관 사업소 메인페이지로 이동"
           >
             <img src={mixboardLogo} alt="믹스보드 로고" width={56} height={56} className="logoImagePlaceholder" />
             <h1 className="logoText">수원시 도서관 사업소</h1>
@@ -58,27 +62,29 @@ const Header = ({ onSearch, onLogoClick }) => {
       </div>
 
       {/* 2. 피그마 380:647 노드 반영: 도서 검색 폼 영역 */}
-      <div className="searchContainer">
-        <h2 className="searchInstruction">찾으시는 책을 검색하세요.</h2>
-        <form onSubmit={handleSearch} className="searchForm" role="search">
-          <label htmlFor="header-search" className="visually-hidden">도서 검색</label>
-          <input 
-            id="header-search"
-            type="search" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="도서 검색" 
-            className="searchInput"
-            required
-          />
-          <button type="submit" className="searchIconBtn" aria-label="도서 검색">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-        </form>
-      </div>
+      {currentPage !== 'subway-reserve' && (
+        <div className="searchContainer">
+          <h2 className="searchInstruction">찾으시는 책을 검색하세요.</h2>
+          <form onSubmit={handleSearch} className="searchForm" role="search">
+            <label htmlFor="header-search" className="visually-hidden">도서 검색</label>
+            <input 
+              id="header-search"
+              type="search" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="도서 검색" 
+              className="searchInput"
+              required
+            />
+            <button type="submit" className="searchIconBtn" aria-label="도서 검색">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </form>
+        </div>
+      )}
     </header>
   );
 };

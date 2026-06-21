@@ -8,32 +8,81 @@
       name="description"
       content="수원시 통합 도서관 - 지하철 무인 대출(책나루) 등 도서관 서비스를 이용하세요."
     />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="manifest" href="./manifest.json" />
-    <!-- LCP 이미지 우선 다운로드 예약 -->
+    <!-- LCP 이미지 우선 다운로드 예약 (성능 최적화 - 공통) -->
     <link rel="preload" as="image" href="./book01.svg" type="image/svg+xml" />
     <link rel="preload" as="image" href="./book02.svg" type="image/svg+xml" />
     <link rel="preload" as="image" href="./book03.svg" type="image/svg+xml" />
-    <!-- Figma 디자인 반영: Pretendard 폰트 비동기 로딩으로 렌더링 차단 제거 -->
-    <link
-      rel="stylesheet"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-      media="print"
-      onload="this.media = 'all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-      />
-    </noscript>
     <title>수원시 통합 도서관</title>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <header class="header">
+        <div class="topBar">
+          <div class="topBarContainer">
+            <div class="logoGroup" role="button" tabindex="0" aria-label="수원시 도서관 사업소 메인페이지로 이동">
+              <h1 class="logoText">수원시 도서관 사업소</h1>
+            </div>
+          </div>
+        </div>
+        <div class="searchContainer">
+          <h2 class="searchInstruction">찾으시는 책을 검색하세요.</h2>
+          <form class="searchForm" role="search">
+            <label for="header-search" class="visually-hidden">도서 검색</label>
+            <input 
+              id="header-search"
+              type="search" 
+              placeholder="도서 검색" 
+              class="searchInput"
+              required
+            />
+            <button type="submit" class="searchIconBtn" aria-label="도서 검색">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </header>
+      <main id="main-content">
+        <section class="mainMenuSection">
+          <h2 class="visually-hidden">메인 메뉴</h2>
+          <div class="mainMenuGrid">
+            <button class="menuItem" type="button">
+              <span class="menuText">통합예약/신청</span>
+            </button>
+            <button class="menuItem" type="button">
+              <span class="menuText">수원시 통합 도서관</span>
+            </button>
+            <button class="menuItem" type="button">
+              <span class="menuText">지역도서관 통합검색</span>
+            </button>
+            <button class="menuItem" type="button">
+              <span class="menuText">지하철 무인 대출</span>
+            </button>
+          </div>
+          <div class="subwayInfoContainer">
+            <div class="subwayInfoContent">
+              <h3 class="subwayInfoTitle">지하철 무인 대출이 무엇인가요?</h3>
+              <p class="subwayInfoDesc">
+                출퇴근길 도서관에 들릴 필요없이 역에서 대출, 반납 할 수 있어요.
+              </p>
+              <button class="subwayInfoLink" type="button">
+                자세히 알아보기→
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="book-carousel-section">
+          <h2 class="carousel-section-title">추천도서</h2>
+        </section>
+        <section class="book-carousel-section">
+          <h2 class="carousel-section-title">인기도서</h2>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

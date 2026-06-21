@@ -119,16 +119,12 @@ const BOOKS_DATA = [
   }
 ];
 
-const SearchResultPage = () => {
+const SearchResultPage = ({ onReserve }) => {
   // 어떤 책의 소장 정보 아코디언이 열려 있는지 보관하는 state (시안과 일치시키기 위해 1번 도서 기본 활성화)
   const [expandedBookId, setExpandedBookId] = useState(1);
 
   const toggleHoldings = (bookId) => {
     setExpandedBookId((prev) => (prev === bookId ? null : bookId));
-  };
-
-  const handleReservation = (libraryName, bookTitle) => {
-    alert(`[${libraryName}] 무인 대출기에 '${bookTitle}' 도서가 성공적으로 예약되었습니다.`);
   };
 
   return (
@@ -233,7 +229,7 @@ const SearchResultPage = () => {
                             <button
                               onClick={() => {
                                 if (hold.isAvailable) {
-                                  handleReservation(hold.library, book.title);
+                                  onReserve(hold.library, book.title);
                                 }
                               }}
                               className={`subway-reserve-btn ${hold.isAvailable ? 'active' : 'disabled'}`}
