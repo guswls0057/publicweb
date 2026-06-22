@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import BookCarousel from './components/BookCarousel';
 import SearchResultPage from './components/SearchResultPage';
+import MyLibraryButton from './components/MyLibraryButton';
 import './App.css'; // 메인메뉴 및 추가 영역 CSS 임포트
 
 const SubwayLoanPage = lazy(() => import('./components/SubwayLoanPage'));
@@ -197,7 +198,16 @@ function App() {
         )}
         </Suspense>
       </main>
-      <Footer />
+
+      {currentPage === 'home' && (
+        <MyLibraryButton 
+          onClick={() => {
+            alert('나의 도서관 페이지로 이동합니다.');
+          }} 
+        />
+      )}
+
+      <Footer isHome={currentPage === 'home'} />
 
       {/* 최종 예약 확정 안내 팝업 (Figma 494:1966 시안) */}
       {showSuccessPopup && (

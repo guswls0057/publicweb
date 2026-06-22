@@ -11,7 +11,24 @@ const libraries = [
   { value: 'yeongtong', label: '영통도서관' },
 ];
 
-export default function Footer() {
+const subMenus = [
+  { id: 'sub-1', name: '휴관일 안내' },
+  { id: 'sub-2', name: '도서관 소개' },
+  { id: 'sub-3', name: '이용시간안내' },
+  { id: 'sub-4', name: '도서관 전자잡지' },
+  { id: 'sub-5', name: '행정서비스현장' },
+  { id: 'sub-6', name: '대출회원가입' },
+  { id: 'sub-7', name: '특화자료' },
+  { id: 'sub-8', name: '조직도' },
+  { id: 'sub-9', name: '전자도서관' },
+  { id: 'sub-10', name: '자료기증' },
+  { id: 'sub-11', name: '현황안내' },
+  { id: 'sub-12', name: '도서관서비스' },
+  { id: 'sub-13', name: '오시는길' },
+  { id: 'sub-14', name: 'FAQ' },
+];
+
+export default function Footer({ isHome }) {
   const [selectedLibrary, setSelectedLibrary] = useState('central');
 
   const handleGo = () => {
@@ -21,6 +38,18 @@ export default function Footer() {
 
   return (
     <footer className="site-footer">
+      {isHome && (
+        <div className="footer-submenu-wrapper">
+          <div className="footer-submenu-grid">
+            {subMenus.map((menu) => (
+              <a key={menu.id} href={`#${menu.id}`} className="footer-submenu-item">
+                <span className="submenu-text">{menu.name}</span>
+                <span className="submenu-arrow"> 〉</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="footer-info-section">
         <div className="footer-selector">
           <div className="selector-group">
