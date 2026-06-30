@@ -49,6 +49,7 @@ const Header = ({ onSearch, onLogoClick, currentPage, searchQuery: propSearchQue
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
+              <span className="iconBtnText">로그인</span>
             </button>
             <button type="button" className="iconBtn" aria-label="전체 메뉴 열기">
               <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -56,7 +57,20 @@ const Header = ({ onSearch, onLogoClick, currentPage, searchQuery: propSearchQue
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
               </svg>
+              <span className="iconBtnText">전체 메뉴</span>
             </button>
+          </nav>
+        </div>
+      </div>
+
+      {/* 데스크톱/태블릿 전용 GNB 서브메뉴 영역 */}
+      <div className="gnbBar">
+        <div className="gnbContainer">
+          <nav aria-label="주요 서비스 메뉴" className="gnbNav">
+            <a href="#electronic-library" className="gnbLink" onClick={(e) => { e.preventDefault(); alert('전자 도서관 서비스로 이동합니다.'); }}>전자 도서관</a>
+            <a href="#about-library" className="gnbLink" onClick={(e) => { e.preventDefault(); alert('도서관 소개 서비스로 이동합니다.'); }}>도서관 소개</a>
+            <a href="#my-library" className="gnbLink" onClick={(e) => { e.preventDefault(); alert('나의 도서관 서비스로 이동합니다.'); }}>나의 도서관</a>
+            <a href="#hours-guide" className="gnbLink" onClick={(e) => { e.preventDefault(); alert('이용시간안내 서비스로 이동합니다.'); }}>이용시간안내</a>
           </nav>
         </div>
       </div>
