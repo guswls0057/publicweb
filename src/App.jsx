@@ -5,6 +5,11 @@ import BookCarousel from './components/BookCarousel';
 import SearchResultPage from './components/SearchResultPage';
 import MyLibraryButton from './components/MyLibraryButton';
 import './App.css'; // 메인메뉴 및 추가 영역 CSS 임포트
+import requestIcon from './assets/통합예약신청아이콘.svg';
+import libraryIcon from './assets/수원시통합도서관아이콘.svg';
+import searchIcon from './assets/지역도서관통합검색 아이콘.svg';
+import subwayIcon from './assets/지하철무인대출아이콘.svg';
+
 
 const SubwayLoanPage = lazy(() => import('./components/SubwayLoanPage'));
 const SubwayReservePage = lazy(() => import('./components/SubwayReservePage'));
@@ -38,46 +43,22 @@ function App() {
     {
       id: 1,
       title: '통합예약/신청',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-      )
+      icon: <img src={requestIcon} alt="통합예약/신청 아이콘" width="100%" height="100%" style={{ objectFit: 'contain' }} />
     },
     {
       id: 2,
       title: '수원시 통합 도서관',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-        </svg>
-      )
+      icon: <img src={libraryIcon} alt="수원시 통합 도서관 아이콘" width="100%" height="100%" style={{ objectFit: 'contain' }} />
     },
     {
       id: 3,
       title: '지역도서관\n통합검색',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      )
+      icon: <img src={searchIcon} alt="지역도서관 통합검색 아이콘" width="100%" height="100%" style={{ objectFit: 'contain' }} />
     },
     {
       id: 4,
       title: '지하철 무인 대출',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="#484848" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-          <path d="M6 8h12"></path>
-          <circle cx="8" cy="16" r="1"></circle>
-          <circle cx="16" cy="16" r="1"></circle>
-        </svg>
-      )
+      icon: <img src={subwayIcon} alt="지하철 무인 대출 아이콘" width="100%" height="100%" style={{ objectFit: 'contain' }} />
     }
   ];
 
