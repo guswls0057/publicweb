@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./public/mixboard-image.svg" />
+    <link rel="icon" type="image/webp" href="./mixboard-image.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
@@ -18,27 +18,99 @@
 
   <body>
     <div id="root">
+      <!-- 화면 낭독기를 위한 건너뛰기 링크 (접근성 및 CLS 방지) -->
+      <a href="#main-content" class="skip-link"> 본문 바로가기 </a>
+
       <header class="header">
         <div class="topBar">
           <div class="topBarContainer">
-            <div class="logoGroup" role="button" tabindex="0" aria-label="수원시 도서관 사업소 메인페이지로 이동">
+            <div
+              class="logoGroup"
+              role="button"
+              tabindex="0"
+              aria-label="수원시 도서관 사업소 메인페이지로 이동"
+            >
+              <img
+                src="./mixboard-image.webp"
+                alt="믹스보드 로고"
+                width="56"
+                height="56"
+                class="logoImagePlaceholder"
+              />
               <h1 class="logoText">수원시 도서관 사업소</h1>
             </div>
+
+            <nav aria-label="상단 유틸리티 메뉴" class="iconGroup">
+              <button type="button" class="iconBtn" aria-label="로그인">
+                <svg
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#484848"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="iconBtnText">로그인</span>
+              </button>
+              <button type="button" class="iconBtn" aria-label="전체 메뉴 열기">
+                <svg
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#484848"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                <span class="iconBtnText">전체 메뉴</span>
+              </button>
+            </nav>
           </div>
         </div>
+
+        <div class="gnbBar">
+          <div class="gnbContainer">
+            <nav aria-label="주요 서비스 메뉴" class="gnbNav">
+              <a href="#electronic-library" class="gnbLink">전자 도서관</a>
+              <a href="#about-library" class="gnbLink">도서관 소개</a>
+              <a href="#my-library" class="gnbLink">나의 도서관</a>
+              <a href="#hours-guide" class="gnbLink">이용시간안내</a>
+            </nav>
+          </div>
+        </div>
+
         <div class="searchContainer">
           <h2 class="searchInstruction">찾으시는 책을 검색하세요.</h2>
           <form class="searchForm" role="search">
             <label for="header-search" class="visually-hidden">도서 검색</label>
-            <input 
+            <input
               id="header-search"
-              type="search" 
-              placeholder="도서 검색" 
+              type="search"
+              placeholder="도서 검색"
               class="searchInput"
               required
             />
             <button type="submit" class="searchIconBtn" aria-label="도서 검색">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
@@ -46,20 +118,25 @@
           </form>
         </div>
       </header>
+
       <main id="main-content">
         <section class="mainMenuSection">
           <h2 class="visually-hidden">메인 메뉴</h2>
           <div class="mainMenuGrid">
-            <button class="menuItem" type="button">
+            <button class="menuItem" type="button" id="main-menu-item-1">
+              <div class="menuIconWrapper" aria-hidden="true"></div>
               <span class="menuText">통합예약/신청</span>
             </button>
-            <button class="menuItem" type="button">
+            <button class="menuItem" type="button" id="main-menu-item-2">
+              <div class="menuIconWrapper" aria-hidden="true"></div>
               <span class="menuText">수원시 통합 도서관</span>
             </button>
-            <button class="menuItem" type="button">
-              <span class="menuText">지역도서관 통합검색</span>
+            <button class="menuItem" type="button" id="main-menu-item-3">
+              <div class="menuIconWrapper" aria-hidden="true"></div>
+              <span class="menuText">지역도서관<br />통합검색</span>
             </button>
-            <button class="menuItem" type="button">
+            <button class="menuItem" type="button" id="main-menu-item-4">
+              <div class="menuIconWrapper" aria-hidden="true"></div>
               <span class="menuText">지하철 무인 대출</span>
             </button>
           </div>
@@ -69,17 +146,184 @@
               <p class="subwayInfoDesc">
                 출퇴근길 도서관에 들릴 필요없이 역에서 대출, 반납 할 수 있어요.
               </p>
-              <button class="subwayInfoLink" type="button">
+              <button
+                class="subwayInfoLink"
+                type="button"
+                id="subway-info-link-btn"
+              >
                 자세히 알아보기→
+              </button>
+            </div>
+            <div class="subwayInfoIcon" aria-hidden="true">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#000000"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
+                <path d="M4 11h16"></path>
+                <path d="M12 3v8"></path>
+                <path d="M8 19l-2 3"></path>
+                <path d="M16 19l2 3"></path>
+                <path d="M8 15h.01"></path>
+                <path d="M16 15h.01"></path>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="bookCarouselSection"
+          aria-labelledby="recommended-heading"
+        >
+          <h2 id="recommended-heading" class="bookCarouselTitle">추천도서</h2>
+          <div class="bookCarouselViewport">
+            <div
+              class="bookCarouselTrack"
+              role="region"
+              aria-label="추천도서 목록"
+              aria-live="polite"
+            >
+              <div class="bookCoverCard"></div>
+              <div class="bookCoverCard"></div>
+              <div class="bookCoverCard"></div>
+            </div>
+          </div>
+          <div
+            class="carouselControls"
+            role="group"
+            aria-label="추천도서 컨트롤"
+          >
+            <div class="carouselIndicators" aria-hidden="true">
+              <span class="indicatorDot indicatorDot--active"></span>
+              <span class="indicatorDot"></span>
+              <span class="indicatorDot"></span>
+              <span class="indicatorDot"></span>
+            </div>
+            <div class="carouselNavGroup">
+              <button
+                type="button"
+                class="carouselNavBtn carouselNavBtn--prev"
+                disabled
+                aria-label="이전 도서 목록"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="carouselNavBtn carouselNavBtn--next"
+                aria-label="다음 도서 목록"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
               </button>
             </div>
           </div>
         </section>
-        <section class="book-carousel-section">
-          <h2 class="carousel-section-title">추천도서</h2>
-        </section>
-        <section class="book-carousel-section">
-          <h2 class="carousel-section-title">인기도서</h2>
+
+        <section class="bookCarouselSection" aria-labelledby="popular-heading">
+          <h2 id="popular-heading" class="bookCarouselTitle">인기도서</h2>
+          <div class="bookCarouselViewport">
+            <div
+              class="bookCarouselTrack"
+              role="region"
+              aria-label="인기도서 목록"
+              aria-live="polite"
+            >
+              <div class="bookCoverCard"></div>
+              <div class="bookCoverCard"></div>
+              <div class="bookCoverCard"></div>
+            </div>
+          </div>
+          <div
+            class="carouselControls"
+            role="group"
+            aria-label="인기도서 컨트롤"
+          >
+            <div class="carouselIndicators" aria-hidden="true">
+              <span class="indicatorDot indicatorDot--active"></span>
+              <span class="indicatorDot"></span>
+              <span class="indicatorDot"></span>
+              <span class="indicatorDot"></span>
+            </div>
+            <div class="carouselNavGroup">
+              <button
+                type="button"
+                class="carouselNavBtn carouselNavBtn--prev"
+                disabled
+                aria-label="이전 도서 목록"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="carouselNavBtn carouselNavBtn--next"
+                aria-label="다음 도서 목록"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </section>
       </main>
     </div>

@@ -2,7 +2,6 @@ import { useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BookCarousel from './components/BookCarousel';
-import SearchResultPage from './components/SearchResultPage';
 import MyLibraryButton from './components/MyLibraryButton';
 import './App.css'; // 메인메뉴 및 추가 영역 CSS 임포트
 import requestIcon from './assets/통합예약신청아이콘.svg';
@@ -13,6 +12,7 @@ import subwayIcon from './assets/지하철무인대출아이콘.svg';
 
 const SubwayLoanPage = lazy(() => import('./components/SubwayLoanPage'));
 const SubwayReservePage = lazy(() => import('./components/SubwayReservePage'));
+const SearchResultPage = lazy(() => import('./components/SearchResultPage'));
 
 // 추천도서 데이터 (book01 ~ book10, /public 폴더)
 const recommendedBooks = Array.from({ length: 10 }, (_, i) => {
@@ -100,7 +100,6 @@ function App() {
                   <button
                     key={menu.id}
                     className="menuItem"
-                    aria-label={menu.title.replace('\n', ' ')}
                     id={`main-menu-item-${menu.id}`}
                     onClick={() => {
                       if (menu.id === 4) setCurrentPage('subway-loan');

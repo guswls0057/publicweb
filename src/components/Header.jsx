@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Header.css'; // 반응형 CSS 임포트
-import mixboardLogo from '../assets/mixboard-image.png';
+
+const mixboardLogo = `${import.meta.env.BASE_URL}mixboard-image.webp`;
 
 const Header = ({ onSearch, onLogoClick, currentPage, searchQuery: propSearchQuery }) => {
   const [searchQuery, setSearchQuery] = useState(propSearchQuery || '');

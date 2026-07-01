@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Footer.css';
-import blogicon from '../assets/blog-icon.png';
-import facebookicon from '../assets/facebook-icon.png';
-import instagramicon from '../assets/instagram-icon.png';
+import blogicon from '../assets/blog-icon.webp';
+import facebookicon from '../assets/facebook-icon.webp';
+import instagramicon from '../assets/instagram-icon.webp';
 
 const libraries = [
   { value: 'central', label: '중앙도서관' },

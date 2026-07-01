@@ -7,19 +7,23 @@ import './SearchResultPage.css';
    소장정보 아코디언 기능 및 지하철 무인 대출 예약 연동
    ══════════════════════════════════════════════════════════ */
 
+const COMMON_BOOK_INFO = {
+  title: '노인과바다',
+  author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
+  publisher: '중앙',
+  year: '2009',
+  category: '[서수원]어린이자료실',
+  callNumber: '아 808.9-사15ㅈ-64',
+  status: '대출가능(비치중)',
+  isAvailable: true,
+  reserveLimit: '0/2',
+  reserveInfo: '대출중인 자료만 예약가능',
+};
+
 const BOOKS_DATA = [
   {
+    ...COMMON_BOOK_INFO,
     id: 1,
-    title: '노인과바다',
-    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
-    publisher: '중앙',
-    year: '2009',
-    category: '[서수원]어린이자료실',
-    callNumber: '아 808.9-사15ㅈ-64',
-    status: '대출가능(비치중)',
-    isAvailable: true,
-    reserveLimit: '0/2',
-    reserveInfo: '대출중인 자료만 예약가능',
     coverImage: `${import.meta.env.BASE_URL}book01.svg`,
     holdings: [
       {
@@ -43,17 +47,8 @@ const BOOKS_DATA = [
     ]
   },
   {
+    ...COMMON_BOOK_INFO,
     id: 2,
-    title: '노인과바다',
-    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
-    publisher: '중앙',
-    year: '2009',
-    category: '[서수원]어린이자료실',
-    callNumber: '아 808.9-사15ㅈ-64',
-    status: '대출가능(비치중)',
-    isAvailable: true,
-    reserveLimit: '0/2',
-    reserveInfo: '대출중인 자료만 예약가능',
     coverImage: `${import.meta.env.BASE_URL}book02.svg`,
     holdings: [
       {
@@ -68,17 +63,8 @@ const BOOKS_DATA = [
     ]
   },
   {
+    ...COMMON_BOOK_INFO,
     id: 3,
-    title: '노인과바다',
-    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
-    publisher: '중앙',
-    year: '2009',
-    category: '[서수원]어린이자료실',
-    callNumber: '아 808.9-사15ㅈ-64',
-    status: '대출가능(비치중)',
-    isAvailable: true,
-    reserveLimit: '0/2',
-    reserveInfo: '대출중인 자료만 예약가능',
     coverImage: `${import.meta.env.BASE_URL}book03.svg`,
     holdings: [
       {
@@ -93,17 +79,8 @@ const BOOKS_DATA = [
     ]
   },
   {
+    ...COMMON_BOOK_INFO,
     id: 4,
-    title: '노인과바다',
-    author: '어네스트 헤밍웨이 지음 ; 정홍택 옮김',
-    publisher: '중앙',
-    year: '2009',
-    category: '[서수원]어린이자료실',
-    callNumber: '아 808.9-사15ㅈ-64',
-    status: '대출가능(비치중)',
-    isAvailable: true,
-    reserveLimit: '0/2',
-    reserveInfo: '대출중인 자료만 예약가능',
     coverImage: `${import.meta.env.BASE_URL}book04.svg`,
     holdings: [
       {
@@ -140,9 +117,17 @@ const SearchResultPage = ({ onReserve }) => {
               
               {/* 도서 기본 정보 레이아웃 */}
               <div className="book-card-main">
-                {/* 도서 표지 이미지 - 피그마 시안에 부합하는 빈 플레이스홀더 디자인 */}
+                {/* 도서 표지 이미지 - 실제 표지 이미지가 있는 경우 렌더링하고 없는 경우 플레이스홀더 표시 */}
                 <div className="book-cover-wrapper">
-                  <div className="book-cover-placeholder" aria-hidden="true"></div>
+                  {book.coverImage ? (
+                    <img 
+                      src={book.coverImage} 
+                      alt={`${book.title} 표지`} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  ) : (
+                    <div className="book-cover-placeholder" aria-hidden="true"></div>
+                  )}
                 </div>
 
                 {/* 도서 서지 정보 */}
