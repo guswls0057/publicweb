@@ -24,7 +24,7 @@ const BOOKS_DATA = [
   {
     ...COMMON_BOOK_INFO,
     id: 1,
-    coverImage: `${import.meta.env.BASE_URL}book01.svg`,
+    coverImage: '',
     holdings: [
       {
         id: 'hold-1',
@@ -49,7 +49,7 @@ const BOOKS_DATA = [
   {
     ...COMMON_BOOK_INFO,
     id: 2,
-    coverImage: `${import.meta.env.BASE_URL}book02.svg`,
+    coverImage: '',
     holdings: [
       {
         id: 'hold-3',
@@ -65,7 +65,7 @@ const BOOKS_DATA = [
   {
     ...COMMON_BOOK_INFO,
     id: 3,
-    coverImage: `${import.meta.env.BASE_URL}book03.svg`,
+    coverImage: '',
     holdings: [
       {
         id: 'hold-4',
@@ -81,7 +81,7 @@ const BOOKS_DATA = [
   {
     ...COMMON_BOOK_INFO,
     id: 4,
-    coverImage: `${import.meta.env.BASE_URL}book04.svg`,
+    coverImage: '',
     holdings: [
       {
         id: 'hold-5',

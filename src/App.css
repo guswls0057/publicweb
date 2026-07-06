@@ -116,9 +116,10 @@
 .subwayInfoContent {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
   z-index: 2;
-  max-width: 240px;
+  max-width: 320px;
 }
 
 .subwayInfoTitle {
@@ -254,8 +255,14 @@ button.subwayInfoLink {
   }
 
   .subwayInfoContainer {
-    max-width: 600px;
+    width: 100%;
+    max-width: 100%;
     padding: 28px 32px;
+  }
+
+  .subwayInfoContent {
+    max-width: 100%;
+    flex-grow: 1;
   }
 
   .subwayInfoDesc {
@@ -302,8 +309,14 @@ button.subwayInfoLink {
   }
 
   .subwayInfoContainer {
-    max-width: 800px;
+    width: 100%;
+    max-width: 100%;
     padding: 32px 40px;
+  }
+
+  .subwayInfoContent {
+    max-width: 100%;
+    flex-grow: 1;
   }
 
   .subwayInfoDesc {

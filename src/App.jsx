@@ -116,7 +116,7 @@ function App() {
                 <div className="subwayInfoContent">
                   <h3 id="subway-info-heading" className="subwayInfoTitle">지하철 무인 대출이 무엇인가요?</h3>
                   <p className="subwayInfoDesc">
-                    출퇴근길 도서관에 들릴 필요없이 역에서 대출, 반납 할 수 있어요.
+                    출퇴근길 도서관에 들릴 필요없이<br />역에서 대출, <span style={{ whiteSpace: 'nowrap' }}>반납할 수 있어요.</span>
                   </p>
                   <button
                     className="subwayInfoLink"
@@ -164,6 +164,7 @@ function App() {
             onConfirm={(selectedStation, estimatedDate) => {
               setReserveBook(prev => ({ ...prev, station: selectedStation, date: estimatedDate }));
               setCurrentPage('home');
+              setSearchQuery('');
               setShowSuccessPopup(true);
             }}
           />
